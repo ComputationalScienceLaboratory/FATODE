@@ -400,7 +400,7 @@ end module umf_adj_rk
 
 #ifdef SPARSE_LU
 !~~~>SuperLU implementation
-module superlu
+module superlu_adj_rk
     implicit none
     save
     integer :: nvar, nnz
@@ -680,7 +680,7 @@ contains
       end if
     end subroutine superlu_free
 
-end module superlu
+end module superlu_adj_rk
 #endif
 
 module ls_solver_rk
@@ -691,7 +691,7 @@ module ls_solver_rk
         use lapack_adj_rk
 #endif
 #ifdef SPARSE_LU
-      use superlu
+      use superlu_adj_rk
 #endif
       implicit none
 contains      

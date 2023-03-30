@@ -240,7 +240,7 @@ end module umf_fwd_rk
 #endif
 
 #ifdef SPARSE_LU
-module superlu
+module superlu_fwd_rk
     implicit none
     save
     integer :: nvar, nnz
@@ -405,7 +405,7 @@ contains
     if(state .ne. 0) stop 'Deallocation error in superlu_free'
     end subroutine superlu_free
 
-end module superlu
+end module superlu_fwd_rk
 #endif
 
 
@@ -417,7 +417,7 @@ module ls_solver_fwd_rk
       use lapack_fwd_rk
 #endif
 #ifdef SPARSE_LU
-      use superlu
+      use superlu_fwd_rk
 #endif
       implicit none
       public

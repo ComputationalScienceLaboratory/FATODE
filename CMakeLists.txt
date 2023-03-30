@@ -8,8 +8,9 @@ project(
   LANGUAGES Fortran
 )
 
+message(STATUS "CMake build configuration for ${PROJECT_NAME}(${CMAKE_BUILD_TYPE}) ${PROJECT_VERSION}")
 
-message ( STATUS "CMake build configuration for ${PROJECT_NAME}(${CMAKE_BUILD_TYPE}) ${PROJECT_VERSION}" )
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
 
 ################################################################################
 # Projet wide setup options
@@ -19,14 +20,12 @@ option(INCLUDE_ADJOINT_SOLVERS "Include the adjoint solvers in the library" ON)
 option(INCLUDE_TANGENT_LINEAR_SOLVERS "Include the tangent linear methods in the library" ON)
 
 # TODO: instead of using the included files pulled from the host repositories, add an option to link to the libraries
-option(USE_SUITESPARSE "Build with suitespare support" ON)
-option(USE_LAPACK "Build with lapack support" OFF)
+option(USE_SUITESPARSE_UMF "Build with SuiteSpare UMF support" ON)
+option(USE_SUITESPARSE_LU "Build with SuiteSpare LU SUPPORT" ON)
+option(USE_LAPACK "Build with LAPACK support" ON)
 
-if (USE_SUITESPARSE AND USE_LAPACK)
-    message(FATAL_ERROR "Options USE_SUITESPARSE and USE_LAPACK are mutually exclusive. Choose one of them.")
-elseif (NOT USE_SUITESPARSE AND NOT USE_LAPACK)
-    message(FATAL_ERROR "You must choose one to use one of USE_SUITESPARE or USE_LAPACK.")
-endif()
+include(exclusive_options)
+check_mutually_exclusive_options(USE_SUITESPARSE_LU USE_SUITESPARSE_UMF USE_LAPACK)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 

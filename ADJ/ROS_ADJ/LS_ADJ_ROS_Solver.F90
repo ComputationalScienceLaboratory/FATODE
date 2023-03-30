@@ -173,7 +173,7 @@ end module umf_adj_ros
 
 #ifdef SPARSE_LU
 !~~~>SuperLU implementation
-module superlu
+module superlu_adj_ros
     implicit none
     save
     integer :: nvar,nnz
@@ -280,7 +280,7 @@ contains
                        b, ldb, factors, info )
       end subroutine superlu_free
 
-end module superlu
+end module superlu_adj_ros
 #endif
 
 module ls_solver_ros
@@ -291,7 +291,7 @@ module ls_solver_ros
       use lapack_adj_ros
 #endif
 #ifdef SPARSE_LU
-      use superlu
+      use superlu_adj_ros
 #endif
       implicit none
 contains      

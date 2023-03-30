@@ -173,7 +173,7 @@ end module umf_tlm_ros
 
 #ifdef SPARSE_LU
 !~~~>SuperLU implementation
-module superlu
+module superlu_tlm_ros
     implicit none
     save
     integer :: nvar, nnz
@@ -279,7 +279,7 @@ contains
       end if
       end subroutine superlu_free
 
-end module superlu
+end module superlu_tlm_ros
 #endif
 
 module ls_tlm_ros_solver
@@ -290,7 +290,7 @@ module ls_tlm_ros_solver
       use lapack_tlm_ros
 #endif
 #ifdef SPARSE_LU
-      use superlu
+      use superlu_tlm_ros
 #endif
       implicit none
 contains      

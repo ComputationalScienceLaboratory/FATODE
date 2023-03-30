@@ -19,8 +19,11 @@ set_target_properties(FWD PROPERTIES
   SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
-if (USE_SUITESPARSE)
-  target_compile_definitions(FWD PUBLIC $<$<BOOL:${USE_SUITESPARSE}>:SPARSE_UMF>)
+if (USE_SUITESPARSE_LU)
+  target_compile_definitions(FWD PUBLIC $<$<BOOL:${USE_SUITESPARSE_LU}>:SPARSE_LU>)
+endif()
+if (USE_SUITESPARSE_UMF)
+  target_compile_definitions(FWD PUBLIC $<$<BOOL:${USE_SUITESPARSE_UMF}>:SPARSE_UMF>)
 endif()
 if (USE_LAPACK)
   target_compile_definitions(FWD PUBLIC $<$<BOOL:${USE_LAPACK}>:FULL_ALGEBRA>)

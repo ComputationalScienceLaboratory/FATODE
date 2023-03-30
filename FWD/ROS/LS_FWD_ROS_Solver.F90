@@ -147,7 +147,7 @@ end module umf_fwd_ros
 #endif
 
 #ifdef SPARSE_LU
-module superlu
+module superlu_fwd_ros
     implicit none
     save
     integer :: nvar ,nnz
@@ -237,7 +237,7 @@ contains
     if(state .ne. 0) stop 'Deallocation error for Jac'
     end subroutine superlu_free
 
-end module superlu
+end module superlu_fwd_ros
 #endif
 
 module ls_solver_fwd_ros
@@ -248,7 +248,7 @@ module ls_solver_fwd_ros
       use lapack_fwd_ros
 #endif
 #ifdef SPARSE_LU
-      use superlu
+      use superlu_fwd_ros
 #endif
 
       implicit none

@@ -1266,7 +1266,6 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
       DOUBLE PRECISION, INTENT(INOUT) :: R1(N),R2(N),R3(N)
 
       DOUBLE PRECISION    :: x1, x2, x3
-      COMPLEX(kind=selected_real_kind(14,300)) :: BC(N)
       INTEGER :: i
       LOGICAL :: Transp     
      ! Z <- h^{-1) T^{-1) A^{-1) x Z

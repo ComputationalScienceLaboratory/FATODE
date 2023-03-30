@@ -411,7 +411,7 @@ end module umf_tlm_rk
 
 #ifdef SPARSE_LU
 !~~~>SuperLU implementation
-module superlu
+module superlu_tlm_rk
     implicit none
     save
     integer :: nvar, nnz
@@ -678,7 +678,7 @@ contains
       end if
       end subroutine superlu_free
 
-end module superlu
+end module superlu_tlm_rk
 #endif
 
 module ls_tlm_rk_solver
@@ -689,7 +689,7 @@ module ls_tlm_rk_solver
       use lapack_tlm_rk
 #endif
 #ifdef SPARSE_LU
-      use superlu
+      use superlu_tlm_rk
 #endif
       implicit none
 contains      
