@@ -58,9 +58,9 @@ if(INCLUDE_ADJOINT_SOLVERS)
   )
 endif()
 
-# if(INCLUDE_TANGENT_LINEAR_SOLVERS)
-#   add_subdirectory(TLM)
-# endif()
+if(INCLUDE_TANGENT_LINEAR_SOLVERS)
+  add_subdirectory(TLM)
+endif()
 
 set_target_properties(FATODE PROPERTIES
   Fortran_MODULE_DIRECTORY ${FATODE_MOD_DIR}
@@ -77,3 +77,4 @@ set_target_properties(FATODE PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION ${PROJECT_VERSION_MAJOR}
 )
+

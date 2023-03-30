@@ -237,7 +237,7 @@ SUBROUTINE INTEGRATE_TLM(N, NTLM, NNZERO, Y, Y_TLM, TIN, TOUT, ATOL_TLM,RTOL_TLM
 !        For multiple restarts, use Hnew as Hstart in the following run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_tlm_sdirk_solver
       IMPLICIT NONE
 
 ! Arguments      

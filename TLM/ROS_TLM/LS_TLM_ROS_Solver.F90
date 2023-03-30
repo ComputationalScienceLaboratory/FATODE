@@ -62,7 +62,7 @@ end module lapack
 
 #ifdef SPARSE_UMF
 ! UMFPACK implementation 
-module umf
+module umf_tlm_ros
     implicit none 
     save
     integer :: nvar, nnz 
@@ -168,7 +168,7 @@ contains
       end if
       end subroutine umf_free
 
-end module umf
+end module umf_tlm_ros
 #endif
 
 #ifdef SPARSE_LU
@@ -282,9 +282,9 @@ contains
 end module superlu
 #endif
 
-module ls_solver
+module ls_tlm_ros_solver
 #ifdef SPARSE_UMF
-      use umf
+      use umf_tlm_ros
 #endif
 #ifdef FULL_ALGEBRA
       use lapack
@@ -396,4 +396,4 @@ contains
      call jac(nvar,t,y,djdt)
      end subroutine lss_jac2
 
-end module ls_solver
+end module ls_tlm_ros_solver

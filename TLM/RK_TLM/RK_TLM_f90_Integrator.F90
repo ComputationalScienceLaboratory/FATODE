@@ -263,7 +263,7 @@ SUBROUTINE INTEGRATE_TLM( N, NTLM, NNZERO, Y, Y_TLM, TIN, TOUT, ATOL_TLM, RTOL_T
 !                     in the subsequent run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_tlm_rk_solver
       IMPLICIT NONE
       
       INTEGER       :: N, NTLM, NNZERO
@@ -504,7 +504,7 @@ SUBROUTINE INTEGRATE_TLM( N, NTLM, NNZERO, Y, Y_TLM, TIN, TOUT, ATOL_TLM, RTOL_T
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    SUBROUTINE RK_IntegratorTLM( N,NTLM,T,Tend,Y,Y_TLM,IERR )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_tlm_rk_solver
       IMPLICIT NONE
 !~~~> Arguments
       INTEGER,  INTENT(IN)         :: N, NTLM
@@ -1230,7 +1230,7 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
    SUBROUTINE RK_Decomp(N,H,ISING)
    !~~~> Compute the matrices E1 and E2 and their decompositions
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_tlm_rk_solver
       IMPLICIT NONE
       
       INTEGER, INTENT(IN) :: N
@@ -1258,7 +1258,7 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    SUBROUTINE RK_Solve(N,H,R1,R2,R3,ISING)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_tlm_rk_solver
       IMPLICIT NONE
       INTEGER, INTENT(IN) :: N
       INTEGER, INTENT(INOUT) :: ISING
@@ -1298,7 +1298,7 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
                Z1,Z2,Z3,SCAL,Err,     &
                FirstStep,Reject)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_tlm_rk_solver
       IMPLICIT NONE
       
       INTEGER, INTENT(IN) :: N
@@ -1351,7 +1351,7 @@ firej:IF (FirstStep.OR.Reject) THEN
                Z1_TLM,Z2_TLM,Z3_TLM,FWD_Err,     &
                FirstStep,Reject)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_tlm_rk_solver
       IMPLICIT NONE
       
       INTEGER, INTENT(IN) :: N,NTLM
