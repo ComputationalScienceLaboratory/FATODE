@@ -19,6 +19,8 @@ option(INCLUDE_FORWARD_SOLVERS "Include the forward model integrators in the lib
 option(INCLUDE_ADJOINT_SOLVERS "Include the adjoint solvers in the library" ON)
 option(INCLUDE_TANGENT_LINEAR_SOLVERS "Include the tangent linear methods in the library" ON)
 
+option(ENABLE_TESTS "Build tests" ON)
+
 # TODO: instead of using the included files pulled from the host repositories, add an option to link to the libraries
 option(USE_SUITESPARSE_UMF "Build with SuiteSpare UMF support" ON)
 option(USE_SUITESPARSE_LU "Build with SuiteSpare LU SUPPORT" ON)
@@ -26,6 +28,10 @@ option(USE_LAPACK "Build with LAPACK support" ON)
 
 include(exclusive_options)
 check_mutually_exclusive_options(USE_SUITESPARSE_LU USE_SUITESPARSE_UMF USE_LAPACK)
+
+if(USE_LAPACK)
+  find_package(LAPACK REQUIRED)
+endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
@@ -65,6 +71,13 @@ if(INCLUDE_TANGENT_LINEAR_SOLVERS)
   )
 endif()
 
+if(USE_LAPACK)
+  target_link_libraries(FATODE
+    PUBLIC
+      LAPACK::LAPACK
+  )
+endif()
+
 set_target_properties(FATODE PROPERTIES
   Fortran_MODULE_DIRECTORY ${FATODE_MOD_DIR}
 )
@@ -81,3 +94,10 @@ set_target_properties(FATODE PROPERTIES
   SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
+################################################################################
+# FATODE tests
+
+if(PROJECT_IS_TOP_LEVEL AND ENABLE_TESTS)
+  enable_testing()
+  add_subdirectory(test)
+endif()
