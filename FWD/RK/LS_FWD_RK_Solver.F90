@@ -70,7 +70,7 @@ end module lapack
 #endif FULL_ALGEBRA
 
 #ifdef SPARSE_UMF
-module umf
+module umf_fwd_rk
     implicit none 
     save 
     integer :: nvar, nnz
@@ -236,7 +236,7 @@ contains
     if(state .ne. 0) stop 'Deallocation error in umf_free'
     end subroutine
 
-end module umf
+end module umf_fwd_rk
 #endif
 
 #ifdef SPARSE_LU
@@ -409,9 +409,9 @@ end module superlu
 #endif
 
 
-module ls_solver
+module ls_solver_fwd_rk
 #ifdef SPARSE_UMF
-      use umf
+      use umf_fwd_rk
 #endif
 #ifdef FULL_ALGEBRA
       use lapack
@@ -511,4 +511,4 @@ contains
 #endif
       end subroutine
 
-end module ls_solver
+end module ls_solver_fwd_rk

@@ -312,7 +312,7 @@ CONTAINS ! Routines in the module ROS_adj_f90_Integrator
 !    RSTATUS(2)  -> Hexit, last accepted step before exit
 !    For multiple restarts, use Hexit as Hstart in the following run 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    USE LS_Solver
+    USE ls_solver_ros
     IMPLICIT NONE
    
 !~~~>  Arguments
@@ -884,7 +884,7 @@ CONTAINS ! Routines in the module ROS_adj_f90_Integrator
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_ros
       IMPLICIT NONE
       INTEGER, INTENT(IN) :: N, NADJ
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -1184,7 +1184,7 @@ Stage: DO istage = 1, ros_S
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_ros
       IMPLICIT NONE
    
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -1455,7 +1455,7 @@ Stage: DO istage = ros_S, 1, -1
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_ros
       IMPLICIT NONE
    
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -1683,7 +1683,7 @@ Stage: DO istage = 1, ros_S
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  USE LS_Solver
+  USE ls_solver_ros
   IMPLICIT NONE
    
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -1900,7 +1900,7 @@ Stage: DO istage = 1, ros_S
 !       -half the step size if LU decomposition fails and retry
 !       -exit after 5 consecutive fails
 ! --- --- --- --- --- --- --- --- --- --- --- --- ---
-   USE LS_Solver
+   USE ls_solver_ros
    IMPLICIT NONE
   
 !~~~> Input arguments
@@ -2635,7 +2635,7 @@ SUBROUTINE RosenbrockADJ2( N, NP, NNZERO, Y, NADJ, Lambda, Tstart, Tend, FUN, &
 !    RSTATUS(2)  -> Hexit, last accepted step before exit
 !    For multiple restarts, use Hexit as Hstart in the following run 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   USE LS_Solver
+   USE ls_solver_ros
    IMPLICIT NONE
    
 !~~~>  Arguments
@@ -3211,7 +3211,7 @@ CONTAINS !  Procedures internal to RosenbrockADJ
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   USE LS_Solver
+   USE ls_solver_ros
    IMPLICIT NONE
    INTEGER, INTENT(IN)              :: N, NADJ
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -3515,7 +3515,7 @@ Stage: DO istage = 1, ros_S
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_ros
       IMPLICIT NONE
    
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -3714,7 +3714,7 @@ Stage: DO istage = ros_S, 1, -1
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  USE LS_Solver
+  USE ls_solver_ros
   IMPLICIT NONE
    
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -3942,7 +3942,7 @@ Stage: DO istage = 1, ros_S
 !      defined by ros_S (no of stages)  
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  USE LS_Solver
+  USE ls_solver_ros
   IMPLICIT NONE
    
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -4159,7 +4159,7 @@ Stage: DO istage = 1, ros_S
 !       -half the step size if LU decomposition fails and retry
 !       -exit after 5 consecutive fails
 ! --- --- --- --- --- --- --- --- --- --- --- --- ---
-   USE LS_Solver
+   USE ls_solver_ros
    IMPLICIT NONE
   
 !~~~> Input arguments

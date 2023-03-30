@@ -1,13 +1,15 @@
 add_library(FWD)
 add_library(csl::FWD ALIAS FWD)
 
+set(FWD_MOD_DIR "${FATODE_MOD_DIR}/ADJ")
+
 set_target_properties(FWD PROPERTIES
-  Fortran_MODULE_DIRECTORY ${FATODE_MOD_DIR}
+  Fortran_MODULE_DIRECTORY ${FWD_MOD_DIR}
 )
 
 target_include_directories(FWD
   PUBLIC  
-    $<BUILD_INTERFACE:${FATODE_MOD_DIR}>
+    $<BUILD_INTERFACE:${FWD_MOD_DIR}>
     $<INSTALL_INTERFACE:${FATODE_INSTALL_MOD_DIR}>
 )
 
@@ -17,8 +19,8 @@ set_target_properties(FWD PROPERTIES
   SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
-if (USE_SUITESPARE)
-  target_compile_definitions(FWD PUBLIC $<$<BOOL:${USE_SUITESPARE}>:SPARSE_UMF>)
+if (USE_SUITESPARSE)
+  target_compile_definitions(FWD PUBLIC $<$<BOOL:${USE_SUITESPARSE}>:SPARSE_UMF>)
 endif()
 if (USE_LAPACK)
   target_compile_definitions(FWD PUBLIC $<$<BOOL:${USE_LAPACK}>:FULL_ALGEBRA>)

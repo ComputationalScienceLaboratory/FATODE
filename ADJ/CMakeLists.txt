@@ -1,13 +1,15 @@
 add_library(ADJ)
 add_library(csl::ADJ ALIAS ADJ)
 
+set(ADJ_MOD_DIR "${FATODE_MOD_DIR}/ADJ")
+
 set_target_properties(ADJ PROPERTIES
-  Fortran_MODULE_DIRECTORY ${FATODE_MOD_DIR}
+  Fortran_MODULE_DIRECTORY ${ADJ_MOD_DIR}
 )
 
 target_include_directories(ADJ
   PUBLIC  
-    $<BUILD_INTERFACE:${FATODE_MOD_DIR}>
+    $<BUILD_INTERFACE:${ADJ_MOD_DIR}>
     $<INSTALL_INTERFACE:${FATODE_INSTALL_MOD_DIR}>
 )
 
@@ -17,8 +19,8 @@ set_target_properties(ADJ PROPERTIES
   SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
-if (USE_SUITESPARE)
-  target_compile_definitions(ADJ PUBLIC $<$<BOOL:${USE_SUITESPARE}>:SPARSE_UMF>)
+if (USE_SUITESPARSE)
+  target_compile_definitions(ADJ PUBLIC $<$<BOOL:${USE_SUITESPARSE}>:SPARSE_UMF>)
 endif()
 if (USE_LAPACK)
   target_compile_definitions(ADJ PUBLIC $<$<BOOL:${USE_LAPACK}>:FULL_ALGEBRA>)

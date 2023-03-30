@@ -286,7 +286,7 @@ CONTAINS
 !        For multiple restarts, use Hnew as Hstart in the following run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
 
 ! Arguments      
@@ -544,7 +544,7 @@ CONTAINS
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE SDIRK_FwdInt( N,NADJ,Tinitial,Tfinal,Y,GetQuad,Ierr )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
 
 !~~~> Arguments:      
@@ -785,7 +785,7 @@ accept: IF ( Err < ONE ) THEN !~~~> Step is accepted
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE SDIRK_DadjInt( N, NP, NADJ, Lambda, Mu, GetQuad, Ierr )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
 
 !~~~> Arguments:      
@@ -1201,7 +1201,7 @@ NewtonLoop:DO NewtonIter = 1, NewtonMaxit
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !~~~>  Compute the matrix E = 1/(H*GAMMA)*Jac, and its decomposition
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver 
+      USE ls_solver_sdirk 
       IMPLICIT NONE
       
       DOUBLE PRECISION, INTENT(INOUT) :: H
@@ -1252,7 +1252,7 @@ Hloop: DO WHILE (ISING /= 0)
 !~~~>  Solves the system (H*Gamma-Jac)*x = R
 !      using the LU decomposition of E = I - 1/(H*Gamma)*Jac
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
       INTEGER, INTENT(IN)       :: N, ISING
       LOGICAL, INTENT(IN)       :: Transp
@@ -1807,7 +1807,7 @@ Hloop: DO WHILE (ISING /= 0)
 !        For multiple restarts, use Hnew as Hstart in the following run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
 
 ! Arguments      
@@ -2059,7 +2059,7 @@ Hloop: DO WHILE (ISING /= 0)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE SDIRK_FwdInt( N,NADJ,Tinitial,Tfinal,Y,GetQuad,Ierr )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
 
 !~~~> Arguments:      
@@ -2299,7 +2299,7 @@ accept: IF ( Err < ONE ) THEN !~~~> Step is accepted
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE SDIRK_DadjInt( N, NADJ, Lambda, GetQuad, Ierr )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
 
 !~~~> Arguments:      
@@ -2695,7 +2695,7 @@ NewtonLoop:DO NewtonIter = 1, NewtonMaxit
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !~~~>  Compute the matrix E = 1/(H*GAMMA)*Jac, and its decomposition
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver 
+      USE ls_solver_sdirk 
       IMPLICIT NONE
       
       DOUBLE PRECISION, INTENT(INOUT) :: H
@@ -2746,7 +2746,7 @@ Hloop: DO WHILE (ISING /= 0)
 !~~~>  Solves the system (H*Gamma-Jac)*x = R
 !      using the LU decomposition of E = I - 1/(H*Gamma)*Jac
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      USE ls_solver_sdirk
       IMPLICIT NONE
       INTEGER, INTENT(IN)       :: N, ISING
       LOGICAL, INTENT(IN)       :: Transp

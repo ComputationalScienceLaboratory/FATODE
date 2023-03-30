@@ -128,7 +128,7 @@ end module lapack
 
 #ifdef SPARSE_UMF
 ! UMFPACK implementation 
-module umf
+module umf_adj_rk
     implicit none 
     save 
     integer :: nvar, nnz
@@ -395,7 +395,7 @@ contains
     end if
     end subroutine umf_free
 
-end module umf
+end module umf_adj_rk
 #endif
 
 #ifdef SPARSE_LU
@@ -683,9 +683,9 @@ contains
 end module superlu
 #endif
 
-module ls_solver
+module ls_solver_rk
 #ifdef SPARSE_UMF
-      use umf
+      use umf_adj_rk
 #endif 
 #ifdef FULL_ALGEBRA
       use lapack
@@ -847,4 +847,4 @@ contains
           z = matmul(transpose(fjac3),g)
      end subroutine lss_mul_jactr3
 
-end module ls_solver
+end module ls_solver_rk
