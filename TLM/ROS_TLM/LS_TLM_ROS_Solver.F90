@@ -1,6 +1,6 @@
 !~~~> LAPACK implementation
 #ifdef FULL_ALGEBRA
-module lapack
+module lapack_tlm_ros
       implicit none
       save
       integer :: nvar
@@ -57,7 +57,7 @@ contains
       end if
     end subroutine lapack_solve
 
-end module lapack
+end module lapack_tlm_ros
 #endif
 
 #ifdef SPARSE_UMF
@@ -287,7 +287,7 @@ module ls_tlm_ros_solver
       use umf_tlm_ros
 #endif
 #ifdef FULL_ALGEBRA
-      use lapack
+      use lapack_tlm_ros
 #endif
 #ifdef SPARSE_LU
       use superlu

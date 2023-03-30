@@ -1,5 +1,5 @@
 #ifdef FULL_ALGEBRA
-module lapack
+module lapack_fwd_sdirk
       implicit none
       save
       integer :: nvar
@@ -38,7 +38,7 @@ contains
       deallocate(ip,fjac,e,STAT=state)
       if(state .ne.0) stop 'Deallocation error for fjac and e in lapack_free'
       end subroutine lapack_free
-end module lapack
+end module lapack_fwd_sdirk
 #endif
 
 #ifdef SPARSE_UMF
@@ -242,7 +242,7 @@ module ls_solver_fwd_sdirk
       use umf_fwd_sdirk
 #endif
 #ifdef FULL_ALGEBRA
-      use lapack
+      use lapack_fwd_sdirk
 #endif
 #ifdef SPARSE_LU
       use superlu

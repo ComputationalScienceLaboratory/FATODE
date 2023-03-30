@@ -60,6 +60,10 @@ endif()
 
 if(INCLUDE_TANGENT_LINEAR_SOLVERS)
   add_subdirectory(TLM)
+  target_link_libraries(FATODE
+    PUBLIC
+      csl::TLM
+  )
 endif()
 
 set_target_properties(FATODE PROPERTIES

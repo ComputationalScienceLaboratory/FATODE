@@ -1,6 +1,6 @@
 #ifdef FULL_ALGEBRA
 !~~~> LAPACK implementation
-module lapack
+module lapack_adj_rk
       implicit none
       save
       integer :: nvar
@@ -123,7 +123,7 @@ contains
       end if
     end subroutine lapack_solve_big
 
-end module lapack
+end module lapack_adj_rk
 #endif
 
 #ifdef SPARSE_UMF
@@ -688,7 +688,7 @@ module ls_solver_rk
       use umf_adj_rk
 #endif 
 #ifdef FULL_ALGEBRA
-      use lapack
+        use lapack_adj_rk
 #endif
 #ifdef SPARSE_LU
       use superlu

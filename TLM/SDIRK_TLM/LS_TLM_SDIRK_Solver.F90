@@ -1,6 +1,6 @@
 #ifdef FULL_ALGEBRA
 !~~~> LAPACK implementation
-module lapack
+module lapack_tlm_sdirk
       implicit none
       save
       integer :: nvar
@@ -78,7 +78,7 @@ contains
       end if
     end subroutine lapack_solve_tlm
 
-end module lapack
+end module lapack_tlm_sdirk
 #endif
 
 #ifdef SPARSE_UMF
@@ -461,7 +461,7 @@ module ls_tlm_sdirk_solver
       use umf_tlm_sdirk
 #endif
 #ifdef FULL_ALGEBRA
-      use lapack
+      use lapack_tlm_sdirk
 #endif
 #ifdef SPARSE_LU
       use superlu
