@@ -18,12 +18,9 @@ option(INCLUDE_FORWARD_SOLVERS "Include the forward model integrators in the lib
 option(INCLUDE_ADJOINT_SOLVERS "Include the adjoint solvers in the library" ON)
 option(INCLUDE_TANGENT_LINEAR_SOLVERS "Include the tangent linear methods in the library" ON)
 
-set(YOURLIB_BUILD_WITH "NOTHING" CACHE STRING "build with that thing")
-set_property(CACHE YOURLIB_BUILD_WITH PROPERTY STRINGS "NOTHING" "IR" "TOF")
-
 # TODO: instead of using the included files pulled from the host repositories, add an option to link to the libraries
-option(USE_SUITESPARSE "Build with suitespare support" OF)
-option(USE_LAPACK "Build with lapack support" OF)
+option(USE_SUITESPARSE "Build with suitespare support" ON)
+option(USE_LAPACK "Build with lapack support" OFF)
 
 if (USE_SUITESPARSE AND USE_LAPACK)
     message(FATAL_ERROR "Options USE_SUITESPARSE and USE_LAPACK are mutually exclusive. Choose one of them.")
@@ -47,20 +44,23 @@ add_library(csl::FATODE ALIAS FATODE)
 
 if(INCLUDE_FORWARD_SOLVERS)
   add_subdirectory(FWD)
+  target_link_libraries(FATODE
+    PUBLIC
+      csl::FWD
+  )
 endif()
 
-# if(INCLUDE_ADJOINT_SOLVERS)
-#   add_subdirectory(ADJ)
-# endif()
+if(INCLUDE_ADJOINT_SOLVERS)
+  add_subdirectory(ADJ)
+  target_link_libraries(FATODE
+    PUBLIC
+      csl::ADJ
+  )
+endif()
 
 # if(INCLUDE_TANGENT_LINEAR_SOLVERS)
 #   add_subdirectory(TLM)
 # endif()
-
-target_link_libraries(FATODE
-  PUBLIC
-    csl::FWD
-)
 
 set_target_properties(FATODE PROPERTIES
   Fortran_MODULE_DIRECTORY ${FATODE_MOD_DIR}
