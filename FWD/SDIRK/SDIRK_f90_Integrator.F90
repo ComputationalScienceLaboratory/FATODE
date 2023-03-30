@@ -212,7 +212,7 @@ SUBROUTINE INTEGRATE( TIN, TOUT, N, NNZERO, VAR, RTOL, ATOL, FUN, JAC, &
 !        For multiple restarts, use Hnew as Hstart in the following run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_sdirk
       IMPLICIT NONE 
       INTEGER, INTENT(IN)          :: N, NNZERO,ICNTRL(20)
       DOUBLE PRECISION, INTENT(IN)    :: Tinitial, Tfinal, &
@@ -738,7 +738,7 @@ accept: IF ( Err < ONE ) THEN !~~~> Step is accepted
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !~~~>  Compute the matrix E = 1/(H*GAMMA)*Jac, and its decomposition
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_sdirk
       IMPLICIT NONE
      
       INTEGER, INTENT(IN) :: N 
@@ -791,7 +791,7 @@ Hloop: DO WHILE (ISING /= 0)
 !~~~>  Solves the system (H*Gamma-Jac)*x = RHS
 !      using the LU decomposition of E = I - 1/(H*Gamma)*Jac
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_sdirk
       IMPLICIT NONE
       INTEGER, INTENT(IN)       :: N
       DOUBLE PRECISION, INTENT(IN) :: H

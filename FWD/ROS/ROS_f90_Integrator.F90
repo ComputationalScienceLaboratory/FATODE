@@ -207,7 +207,7 @@ SUBROUTINE Rosenbrock(N,NNZERO,Y,Tstart,Tend, &
 !                     in the subsequent run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   USE LS_Solver
+   use ls_solver_fwd_ros
    IMPLICIT NONE
 
 !~~~>  Arguments
@@ -443,7 +443,7 @@ CONTAINS !  SUBROUTINES internal to Rosenbrock
 !      defined by ros_S (no of stages)
 !      and its coefficients ros_{A,C,M,E,Alpha,Gamma}
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  USE LS_Solver
+  use ls_solver_fwd_ros
   IMPLICIT NONE
 
 !~~~> Input: the initial condition at Tstart; Output: the solution at T
@@ -698,7 +698,7 @@ Stage: DO istage = 1, ros_S
 !       -half the step size if LU decomposition fails and retry
 !       -exit after 5 consecutive fails
 ! --- --- --- --- --- --- --- --- --- --- --- --- ---
-   USE LS_Solver
+   use ls_solver_fwd_ros
    IMPLICIT NONE
 
 !~~~> Input arguments

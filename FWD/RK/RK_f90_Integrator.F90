@@ -239,7 +239,7 @@ CONTAINS
 !                     in the subsequent run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_rk
       IMPLICIT NONE
       
       INTEGER :: N,NNZERO
@@ -460,7 +460,7 @@ CONTAINS
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    SUBROUTINE RK_Integrator( NV,T,Tend,Y,FUN,JAC,IERR )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_rk
       IMPLICIT NONE
 !~~~> Arguments
       INTEGER,  INTENT(IN)         :: NV
@@ -959,7 +959,7 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
    SUBROUTINE RK_Decomp(N,H,ISING)
    !~~~> Compute the matrices E1 and E2 and their decompositions
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_rk
       IMPLICIT NONE
       INTEGER :: N, ISING
       DOUBLE PRECISION    ::  H, Alpha, Beta, Gamma
@@ -991,7 +991,7 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    SUBROUTINE RK_Solve(N,H,R1,R2,R3,ISING)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_rk
       IMPLICIT NONE
       INTEGER :: N,ISING
       DOUBLE PRECISION    :: R1(N),R2(N),R3(N)
@@ -1028,7 +1028,7 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
                Z1,Z2,Z3,SCAL,Err,     &
                FirstStep,Reject)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE LS_Solver
+      use ls_solver_fwd_rk
       IMPLICIT NONE
       
       INTEGER :: N

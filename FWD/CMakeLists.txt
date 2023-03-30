@@ -1,7 +1,7 @@
 add_library(FWD)
 add_library(csl::FWD ALIAS FWD)
 
-set(FWD_MOD_DIR "${FATODE_MOD_DIR}/ADJ")
+set(FWD_MOD_DIR "${FATODE_MOD_DIR}/FWD")
 
 set_target_properties(FWD PROPERTIES
   Fortran_MODULE_DIRECTORY ${FWD_MOD_DIR}
