@@ -1,7 +1,6 @@
-include(test_util)
-
 ################################################################################
 # Add subdirectories
 
-add_subdirectory(cbm4)
-add_subdirectory(roberts)
+add_subdirectory(ROBERTS_RK_ADJ)
+add_subdirectory(ROBERTS_ROS_ADJ)
+add_subdirectory(ROBERTS_SDIRK_ADJ)
