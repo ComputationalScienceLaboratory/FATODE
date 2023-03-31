@@ -61,7 +61,11 @@
      implicit none
      external fun
      integer ::i,j,state
-     double precision :: tols(10)=(/1d-2, .316227766d-2, 1d-3, .316227766d-3, 1d-4, .316227766d-4, 1d-5, .316227766d-5, 1d-6, .316227766d-6/)
+     double precision :: tols(10)=(/            &
+      1d-2, .316227766d-2, 1d-3, .316227766d-3, &
+      1d-4, .316227766d-4, 1d-5, .316227766d-5, &
+      1d-6, .316227766d-6                       &
+     /)
      double precision :: atol(ndim),rtol(ndim), var(ndim)
      double precision:: tstart, tend, t1, t2, tcpu
      double precision:: rstate(20),rcntrl(20)
