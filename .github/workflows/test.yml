@@ -1,0 +1,20 @@
+name: build
+
+on: [ push, pull_request ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_test_lapack:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: build Docker image
+      run: docker build -t fatode.lapack -f Dockerfile.lapack .
+    - name: run tests in container
+      run: docker run --name test-container -t fatode.lapack bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'

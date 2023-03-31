@@ -1,0 +1,23 @@
+from fedora:37
+
+RUN dnf -y update \
+    && dnf -y install \
+        blas-devel \
+        lapack-devel \ 
+        cmake \
+        gcc \
+        gcc-fortran \
+        lapack \
+        make \
+    && dnf clean all
+
+# build the tuv-x tool
+COPY . /FATODE/
+RUN mkdir /build \
+      && cd /build \
+      && cmake -D CMAKE_BUILD_TYPE=release \
+               -D USE_LAPACK=ON \
+               /FATODE \
+      && make -j 8
+
+WORKDIR /build

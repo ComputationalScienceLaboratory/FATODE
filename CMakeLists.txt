@@ -22,9 +22,9 @@ option(INCLUDE_TANGENT_LINEAR_SOLVERS "Include the tangent linear methods in the
 option(ENABLE_TESTS "Build tests" ON)
 
 # TODO: instead of using the included files pulled from the host repositories, add an option to link to the libraries
-option(USE_SUITESPARSE_UMF "Build with SuiteSpare UMF support" ON)
-option(USE_SUITESPARSE_LU "Build with SuiteSpare LU SUPPORT" ON)
-option(USE_LAPACK "Build with LAPACK support" ON)
+option(USE_SUITESPARSE_UMF "Build with SuiteSpare UMF support" OFF)
+option(USE_SUITESPARSE_LU "Build with SuiteSpare LU SUPPORT" OFF)
+option(USE_LAPACK "Build with LAPACK support" OFF)
 
 include(exclusive_options)
 check_mutually_exclusive_options(USE_SUITESPARSE_LU USE_SUITESPARSE_UMF USE_LAPACK)

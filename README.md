@@ -46,7 +46,8 @@ For usage of FATODE, please refer to the user's guide, as well as the example pr
 ## Changes
 
 ### Changes from Version 1.1.1
-The library is now built with CMake
+- The library is now built with CMake
+- Dockerfiles that build the library with different algebra schemes are included
 
 ### Changes from Version 1.1
 Bug fixes:
