@@ -5,3 +5,4 @@ include(test_util)
 
 add_subdirectory(cbm4)
 add_subdirectory(roberts)
+add_subdirectory(small_strato)

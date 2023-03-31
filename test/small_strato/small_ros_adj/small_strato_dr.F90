@@ -80,7 +80,7 @@ FUN=FUN_U, JAC=JAC_U,ADJINIT=adjinit,HESSTR_VEC= HESSTR_VEC_U, &
 !~~~> End time loop ~~~~~~~~~~
     print *,VAR
    
-    OPEN(20, FILE='rkadj_ADJ_results.m')
+    OPEN(20, FILE='rosadj_ADJ_results.m')
     WRITE(6,*) '**************************************************'
     WRITE(6,*) ' Concentrations and Sensitivities at final time '
     WRITE(6,*) ' were written in the file rkadj_ADJ_results.m'
