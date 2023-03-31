@@ -44,13 +44,13 @@
   2010   format (2x,'time interval [',f10.2,'-',f10.2, ']    nsteps=',i5,&
               ' nasteps=',i5,' nrsteps=',i5,/,2x,&
                 'cputime=', f14.3,'seconds',//)
- ! store results into a file
- !      open(unit=11,file='cbm42d_ros_sol.txt',status='replace')
- !      do i=1,nvar
- !        write(11,2011) var(i)
- ! 2011   format(e24.16)
- !      end do
- !      close(11)
+!  store results into a file
+      open(unit=11,file='cbm42d_ros_sol.txt',status='replace')
+      do i=1,nvar
+        write(11,2011) var(i)
+ 2011   format(e24.16)
+      end do
+      close(11)
  
   end subroutine output_statics
 

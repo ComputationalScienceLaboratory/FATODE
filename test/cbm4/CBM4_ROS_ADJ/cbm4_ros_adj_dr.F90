@@ -131,7 +131,7 @@
               ' nasteps=',i5,' nrsteps=',i5,/,2x,&
                 'cputime=', f14.3,'seconds',/,2x,//)
  ! store results into a file
-       open(unit=11,file='cbm4_ros_sol.txt',status='replace')
+       open(unit=11,file='cbm4_ros_adj_sol.txt',status='replace')
        do i=1,nvar
          write(11,2011) var(i)
   2011   format(e24.16)
@@ -146,7 +146,7 @@
   double precision :: lambda(nvar,nadj), mu(np,nadj)
   integer :: i,j
 
-  open(unit=2012,file='cbm4_output_sens.txt',status='replace')
+  open(unit=2012,file='cbm4_output_ros_adj_sens.txt',status='replace')
 
   do i=1,nadj
     write(2012,'(A,I3)') 'Lambda: column',i
