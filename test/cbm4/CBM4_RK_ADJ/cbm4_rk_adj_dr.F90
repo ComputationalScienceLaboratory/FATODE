@@ -81,7 +81,7 @@
               ' nasteps=',i5,' nrsteps=',i5,/,2x,&
                 'cputime=', f14.3,'seconds',//)
   ! store results into a file
-  open(unit=11,file='cbm4_rk_sol.txt',status='replace')
+  open(unit=11,file='cbm4_rk_adj_sol.txt',status='replace')
   do i=1,nvar
     write(11,2011) var(i)
   2011   format(e24.16)

@@ -317,7 +317,7 @@ CONTAINS
 !                   For multiple restarts, use Hnew as Hstart 
 !                     in the subsequent run
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    USE ls_solver_rk
+    USE ls_solver_adj_rk
     IMPLICIT NONE      
     INTEGER :: N,NP,NNZERO
     INTEGER, INTENT(IN)     :: NADJ
@@ -865,7 +865,7 @@ CONTAINS ! Internal procedures to RungeKuttaADJ1
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE RK_FwdIntegrator( N,NADJ,Tstart,Tend,Y,AdjointType,GetQuad,IERR )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
 !~~~> Arguments
       INTEGER,  INTENT(IN)         :: N, NADJ
@@ -1228,7 +1228,7 @@ accept:IF (Rerr < ONE) THEN !~~~> STEP IS ACCEPTED
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE rk_DadjInt( N,NADJ,NP,Lambda,Mu,Tstart,Tend,T,GetQuad,IERR )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
 !~~~> Arguments
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -1743,7 +1743,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
 !~~~> Prepare the right-hand side for Newton iterations
 !     R = Z_adj - hA x Jac*Z_adj - h J^t b lambda
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       
       INTEGER, INTENT(IN) :: N
@@ -1788,7 +1788,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
     SUBROUTINE RK_Decomp(H,ISING)
    !~~~> Compute the matrices E1 and E2 and their decompositions
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       
       INTEGER :: ISING
@@ -1816,7 +1816,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE RK_Solve(N,H,R1,R2,R3,ISING)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       INTEGER :: N,ISING
       DOUBLE PRECISION    :: R1(N),R2(N),R3(N)
@@ -1851,7 +1851,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE RK_SolveTR(N,H,R1,R2,R3,ISING)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       INTEGER, INTENT(IN)  :: N
       INTEGER, INTENT(INOUT) :: ISING
@@ -1890,7 +1890,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE RK_ErrorEstimate(N,H,Y,T,Z1,Z2,Z3,SCAL,Err,FirstStep,Reject)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       
       INTEGER :: N
@@ -2690,7 +2690,7 @@ fNrej:IF (FirstStep.OR.Reject) THEN
 !                     in the subsequent run
 !
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    USE ls_solver_rk
+    USE ls_solver_adj_rk
     IMPLICIT NONE
       
     INTEGER, INTENT(IN)     :: N,NNZERO,NP,NADJ
@@ -3212,7 +3212,7 @@ CONTAINS ! Internal procedures to RungeKuttaADJ2
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE RK_FwdIntegrator( N,NADJ,Tstart,Tend,Y,AdjointType,GetQuad,IERR )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
 !~~~> Arguments
       INTEGER,  INTENT(IN)            :: N,NADJ
@@ -3561,7 +3561,7 @@ accept:IF (Err < ONE) THEN !~~~> STEP IS ACCEPTED
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE rk_DadjInt( N,NADJ,Lambda,Tstart,Tend,T,GetQuad,IERR )
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
 !~~~> Arguments
 !~~~> Input: the initial condition at Tstart; Output: the solution at T   
@@ -4005,7 +4005,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
 !~~~> Prepare the right-hand side for Newton iterations
 !     R = Z_adj - hA x Jac*Z_adj - h J^t b lambda
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       
       INTEGER, INTENT(IN) :: N
@@ -4049,7 +4049,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
     SUBROUTINE RK_Decomp(H,ISING)
    !~~~> Compute the matrices E1 and E2 and their decompositions
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       
       INTEGER :: ISING
@@ -4077,7 +4077,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE RK_Solve(N,H,R1,R2,R3,ISING)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       INTEGER :: N,ISING
       DOUBLE PRECISION    :: R1(N),R2(N),R3(N)
@@ -4112,7 +4112,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     SUBROUTINE RK_SolveTR(N,H,R1,R2,R3,ISING)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       INTEGER, INTENT(IN)  :: N
       INTEGER, INTENT(INOUT) :: ISING
@@ -4153,7 +4153,7 @@ NewtonLoopAdj:DO  NewtonIter = 1, NewtonMaxit
                Z1,Z2,Z3,SCAL,Err,     &
                FirstStep,Reject)
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      USE ls_solver_rk
+      USE ls_solver_adj_rk
       IMPLICIT NONE
       
       INTEGER :: N

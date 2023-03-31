@@ -683,7 +683,7 @@ contains
 end module superlu_adj_rk
 #endif
 
-module ls_solver_rk
+module ls_solver_adj_rk
 #ifdef SPARSE_UMF
       use umf_adj_rk
 #endif 
@@ -847,4 +847,4 @@ contains
           z = matmul(transpose(fjac3),g)
      end subroutine lss_mul_jactr3
 
-end module ls_solver_rk
+end module ls_solver_adj_rk

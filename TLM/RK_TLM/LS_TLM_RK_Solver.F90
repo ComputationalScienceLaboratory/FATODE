@@ -124,16 +124,17 @@ contains
       end do
     end subroutine lapack_solve_cmp
 
-!    subroutine lapack_solve_big(trans, rhs)
-!      double precision ::rhs(3*nvar)
-!      logical :: trans
-!      integer :: ising
-!      if(trans) then
-!        call dgetrs( 't', 3*nvar, 1, e_big, 3*nvar, ip_big, rhs, 3*nvar, ising)
-!      else
-!        call dgetrs( 'n', 3*nvar, 1, e_big, 3*nvar, ip_big, rhs, 3*nvar, ising)
-!      end if
-!    end subroutine lapack_solve_big
+   subroutine lapack_solve_big(trans, rhs)
+     double precision ::rhs(3*nvar)
+     logical :: trans
+    !  integer :: ising
+    !  if(trans) then
+    !    call dgetrs( 't', 3*nvar, 1, e_big, 3*nvar, ip_big, rhs, 3*nvar, ising)
+    !  else
+    !    call dgetrs( 'n', 3*nvar, 1, e_big, 3*nvar, ip_big, rhs, 3*nvar, ising)
+    !  end if
+      stop 'Unimplemented'
+   end subroutine lapack_solve_big
 
 end module lapack_tlm_rk
 #endif

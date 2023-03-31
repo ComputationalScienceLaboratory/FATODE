@@ -8,12 +8,22 @@ function(create_standard_test)
   include(CMakeParseArguments)
   cmake_parse_arguments(${prefix} " " "${singleValues}" "${multiValues}" ${ARGN})
   add_executable(test_${TEST_NAME} ${TEST_SOURCES})
+
+  target_link_libraries(test_${TEST_NAME} PUBLIC csl::FATODE)
+
+  # link additional libraries
   foreach(library ${TEST_LIBRARIES})
     target_link_libraries(test_${TEST_NAME} PUBLIC ${library})
   endforeach()
+
+
   if(NOT DEFINED TEST_WORKING_DIRECTORY)
-    set(TEST_WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+    set(TEST_WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/test_binaries")
   endif()
+
+  # Place the test executables in their own directory
+  set_target_properties(test_${TEST_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${TEST_WORKING_DIRECTORY})
+
   add_fatode_test(${TEST_NAME} test_${TEST_NAME} "" ${TEST_WORKING_DIRECTORY})
 endfunction(create_standard_test)
 
