@@ -21,7 +21,7 @@ FATODE contains the following directory structure:
     FATODE/ADJ         adjoint model integrators
     FATODE/TLM         tangent linear model integrators
     FATODE/LSS_LIBS    lib files of linear solvers
-    FATODE/EXAMPLES    example programs
+    FATODE/test        example programs that also function as tests
     FATODE/DOC         documentation (user's guide)
 
 FATODE implementation requires BLAS and LAPACK libraries. For solution of
@@ -44,6 +44,9 @@ For usage of FATODE, please refer to the user's guide, as well as the example pr
 
 
 ## Changes
+
+### Changes from Version 1.1.1
+The library is now built with CMake
 
 ### Changes from Version 1.1
 Bug fixes:
