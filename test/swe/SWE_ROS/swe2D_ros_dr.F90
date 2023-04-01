@@ -29,6 +29,7 @@
  
        subroutine output_statics(var,tstart,tend, tcpu, istate)
        use swe2dxy_parameters
+       use :: iso_fortran_env
        implicit none
        double precision :: tstart, tend, tcpu
        double precision :: var(ndim)
@@ -36,10 +37,12 @@
        double precision :: tmp(ndim),delta(ndim)
        double precision :: l2, l2tmp,error
        integer :: i
+       integer :: iostat
  
-       open(unit=2010,file='swe_lsode_sol.txt',form='formatted')
+       open(unit=2010,file='swe_ros_lsode_sol.txt',form='formatted')
        do i=1,ndim
-         read(2010,"(e24.16)") tmp(i)
+         read(2010,"(e24.16)", iostat=iostat) tmp(i)
+         if (iostat == iostat_end) exit
        end do
        close(2010)
  

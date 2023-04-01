@@ -49,6 +49,7 @@ add_library(csl::FATODE ALIAS FATODE)
 
 if(INCLUDE_FORWARD_SOLVERS)
   add_subdirectory(FWD)
+  target_sources(FATODE PUBLIC $<TARGET_OBJECTS:FWD_OBJECTS>)
   target_link_libraries(FATODE
     PUBLIC
       csl::FWD
@@ -57,6 +58,7 @@ endif()
 
 if(INCLUDE_ADJOINT_SOLVERS)
   add_subdirectory(ADJ)
+  target_sources(FATODE PUBLIC $<TARGET_OBJECTS:ADJ_OBJECTS>)
   target_link_libraries(FATODE
     PUBLIC
       csl::ADJ
@@ -65,6 +67,7 @@ endif()
 
 if(INCLUDE_TANGENT_LINEAR_SOLVERS)
   add_subdirectory(TLM)
+  target_sources(FATODE PUBLIC $<TARGET_OBJECTS:TLM_OBJECTS>)
   target_link_libraries(FATODE
     PUBLIC
       csl::TLM

@@ -1,4 +1,4 @@
-target_sources(ADJ
-  PUBLIC
+target_sources(ADJ_OBJECTS
+  PRIVATE
     ERK_ADJ_f90_Integrator.F90
 )

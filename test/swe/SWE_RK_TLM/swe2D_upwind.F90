@@ -557,7 +557,8 @@ do p = 1, Mx*My
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 - SqrtC1g)*((0.5 + (0.5*C2)/(C1*SqrtC1g))/(2.*dx) + (((-0.25*C2*g)/(C1*(C1*g)**1.5) - &
       & (0.5*C2)/(C1**2*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) +&
-      & (0.0416667*g*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*(C1*g)**1.5)) + (-(C2/C1**2) - g/(2.*SqrtC1g))*(((0.5 + (0.5*C2)/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) - (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))
+      & (0.0416667*g*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*(C1*g)**1.5)) + (-(C2/C1**2) - g/(2.*SqrtC1g))*(((0.5 + (0.5*C2)/ &
+      (C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) - (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))
     end if  
     call mapgr(ind,p,0,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -573,7 +574,8 @@ do p = 1, Mx*My
     end if  
     call mapgr(ind,p,1,0,0)  !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2/C1 - SqrtC1g)*(-0.25/(dx*SqrtC1g) + (0.0833333*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx*SqrtC1g)) + (((0.5 + (0.5*C2)/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) - (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))/C1
+      JF(p,ind)=JF(p,ind)+(C2/C1 - SqrtC1g)*(-0.25/(dx*SqrtC1g) + (0.0833333*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx*SqrtC1g)) + &
+      (((0.5 + (0.5*C2)/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) - (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,1,1,0)  !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -642,7 +644,8 @@ do p = 1, Mx*My
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.5 - (0.5*C2)/(C1*SqrtC1g))/(2.*dx) +&
       & (((0.25*C2*g)/(C1*(C1*g)**1.5) + (0.5*C2)/(C1**2*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) -&
-      & (0.0416667*g*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*(C1*g)**1.5)) + (-(C2/C1**2) + g/(2.*SqrtC1g))*(((0.5 - (0.5*C2)/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) + (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))
+      & (0.0416667*g*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*(C1*g)**1.5)) + (-(C2/C1**2) + g/(2.*SqrtC1g))* &
+      (((0.5 - (0.5*C2)/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) + (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))
     end if  
     call mapgr(ind,p,0,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -658,7 +661,9 @@ do p = 1, Mx*My
     end if  
     call mapgr(ind,p,1,0,0)  !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*(0.25/(dx*SqrtC1g) - (0.0833333*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx*SqrtC1g)) + (((0.5 - (0.5*C2)/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) + (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))/C1
+      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*(0.25/(dx*SqrtC1g) - (0.0833333*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx*SqrtC1g)) &
+      + (((0.5 - (0.5*C2)/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*dx) + &
+      (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(dx*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,1,1,0)  !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -678,7 +683,8 @@ do p = 1, Mx*My
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*(-(0.5 - (0.5*C2)/(C1*SqrtC1g))/(2.*dx) + &
       & (((0.25*C2*g)/(C1*(C1*g)**1.5) + (0.5*C2)/(C1**2*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*dx) -&
       & (0.0416667*g*(-3*C2 - 2*N2 + 6*S2 - SS2))/(dx*(C1*g)**1.5)) + (-(C2/C1**2) + &
-      & g/(2.*SqrtC1g))*(((0.5 - (0.5*C2)/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*dx) + (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(dx*SqrtC1g))
+      & g/(2.*SqrtC1g))*(((0.5 - (0.5*C2)/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*dx) &
+      + (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(dx*SqrtC1g))
     end if  
     call mapgr(ind,p,0,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -695,7 +701,8 @@ do p = 1, Mx*My
     call mapgr(ind,p,1,0,0)  !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*(-0.25/(dx*SqrtC1g) - (0.0833333*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx*SqrtC1g)) +&
-      & (((0.5 - (0.5*C2)/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*dx) + (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(dx*SqrtC1g))/C1
+      & (((0.5 - (0.5*C2)/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*dx) + &
+      (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(dx*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,1,1,0)  !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -767,7 +774,8 @@ do p = 1, Mx*My
     call mapgr(ind,p,2,0,0)  !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*(-0.25/(dy*SqrtC1g) + (0.0833333*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy*SqrtC1g)) +&
-      & (((0.5 + (0.5*C3)/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*dy) - (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(dy*SqrtC1g))/C1
+      & (((0.5 + (0.5*C3)/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*dy) - &
+      (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,2,0,1)  !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -785,7 +793,8 @@ do p = 1, Mx*My
     call mapgr(ind,p,0,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*(-(0.5 + (0.5*C3)/(C1*SqrtC1g))/(2.*dy) + (((-0.25*C3*g)/(C1*(C1*g)**1.5) -&
-      & (0.5*C3)/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) + (0.0416667*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*(C1*g)**1.5)) +&
+      & (0.5*C3)/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) + &
+      (0.0416667*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*(C1*g)**1.5)) +&
       & (-(C3/C1**2) - g/(2.*SqrtC1g))*(((0.5 + (0.5*C3)/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) -&
       & (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*SqrtC1g))
     end if  
@@ -804,7 +813,8 @@ do p = 1, Mx*My
     call mapgr(ind,p,2,0,0)  !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*(0.25/(dy*SqrtC1g) + (0.0833333*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy*SqrtC1g)) +&
-      & (((0.5 + (0.5*C3)/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) - (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*SqrtC1g))/C1
+      & (((0.5 + (0.5*C3)/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) - &
+      (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,2,0,1)  !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -832,7 +842,8 @@ do p = 1, Mx*My
     call mapgr(ind,p,0,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.5 - (0.5*C3)/(C1*SqrtC1g))/(2.*dy) + (((0.25*C3*g)/(C1*(C1*g)**1.5) +&
-      & (0.5*C3)/(C1**2*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*dy) - (0.0416667*g*(3*C3 + 2*E3 - 6*W3 + WW3))/(dy*(C1*g)**1.5)) +&
+      & (0.5*C3)/(C1**2*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*dy) - &
+      (0.0416667*g*(3*C3 + 2*E3 - 6*W3 + WW3))/(dy*(C1*g)**1.5)) +&
       & (-(C3/C1**2) + g/(2.*SqrtC1g))*(((0.5 - (0.5*C3)/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*dy) +&
       & (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(dy*SqrtC1g))
     end if  
@@ -851,7 +862,8 @@ do p = 1, Mx*My
     call mapgr(ind,p,2,0,0)  !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*(0.25/(dy*SqrtC1g) - (0.0833333*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy*SqrtC1g)) +&
-      & (((0.5 - (0.5*C3)/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*dy) + (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(dy*SqrtC1g))/C1
+      & (((0.5 - (0.5*C3)/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*dy) + &
+      (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,2,0,1)  !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -869,8 +881,10 @@ do p = 1, Mx*My
     call mapgr(ind,p,0,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*(-(0.5 - (0.5*C3)/(C1*SqrtC1g))/(2.*dy) + (((0.25*C3*g)/(C1*(C1*g)**1.5) +&
-      & (0.5*C3)/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) - (0.0416667*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*(C1*g)**1.5)) +&
-      & (-(C3/C1**2) + g/(2.*SqrtC1g))*(((0.5 - (0.5*C3)/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) + (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*SqrtC1g))
+      & (0.5*C3)/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) - &
+      (0.0416667*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*(C1*g)**1.5)) +&
+      & (-(C3/C1**2) + g/(2.*SqrtC1g))*(((0.5 - (0.5*C3)/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) + &
+      (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*SqrtC1g))
     end if  
     call mapgr(ind,p,0,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -887,7 +901,8 @@ do p = 1, Mx*My
     call mapgr(ind,p,2,0,0)  !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*(-0.25/(dy*SqrtC1g) - (0.0833333*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy*SqrtC1g)) +&
-      & (((0.5 - (0.5*C3)/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) + (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*SqrtC1g))/C1
+      & (((0.5 - (0.5*C3)/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*dy) + &
+      (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,2,0,1)  !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -976,7 +991,8 @@ do p = Mx*My+1, 2*Mx*My
     call mapgr(ind,p,0,0,0)  !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 - SqrtC1g)*((0.5 - (0.5*C2)/(C1*SqrtC1g))/(2.*dx) + &
-      & (0.166667*C2*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx*SqrtC1g) - (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g)) + & 
+      & (0.166667*C2*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx*SqrtC1g) - &
+      (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g)) + & 
       & ((0.0833333*(C2**2/C1**2 - C1*g)*(3*C1 - 6*N1 + NN1 + 2*S1))/(dx*SqrtC1g) + & 
       & ((0.5 - (0.5*C2)/(C1*SqrtC1g))*(3*C2 - 6*N2 + NN2 + 2*S2))/(6.*dx))/C1
     end if  
@@ -1069,8 +1085,10 @@ do p = Mx*My+1, 2*Mx*My
     call mapgr(ind,p,0,0,0)   !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.5 + (0.5*C2)/(C1*SqrtC1g))/(2.*dx) -&
-      & (0.166667*C2*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx*SqrtC1g) +  (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g)) +&
-      & ((0.0833333*(-(C2**2/C1**2) + C1*g)*(3*C1 - 6*N1 + NN1 + 2*S1))/(dx*SqrtC1g) + ((0.5 + (0.5*C2)/(C1*SqrtC1g))*(3*C2 - 6*N2 + NN2 + 2*S2))/(6.*dx))/C1
+      & (0.166667*C2*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx*SqrtC1g) +  &
+      (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g)) +&
+      & ((0.0833333*(-(C2**2/C1**2) + C1*g)*(3*C1 - 6*N1 + NN1 + 2*S1))/(dx*SqrtC1g) + &
+      ((0.5 + (0.5*C2)/(C1*SqrtC1g))*(3*C2 - 6*N2 + NN2 + 2*S2))/(6.*dx))/C1
     end if  
     call mapgr(ind,p,0,1,0)   !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1089,9 +1107,12 @@ do p = Mx*My+1, 2*Mx*My
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((-0.25*(-(C2**2/C1**2) + C1*g))/(dx*SqrtC1g) +&
       & (0.0833333*((2*C2**2)/C1**3 + g)*(-3*C1 - 2*N1 + 6*S1 - SS1))/(dx*SqrtC1g) -&
-      & (0.0416667*g*(-(C2**2/C1**2) + C1*g)*(-3*C1 - 2*N1 + 6*S1 - SS1))/(dx*(C1*g)**1.5) + (((-0.25*C2*g)/(C1*(C1*g)**1.5) -&
-      & (0.5*C2)/(C1**2*SqrtC1g))*(-3*C2 - 2*N2 + 6*S2 - SS2))/(6.*dx)) + (-(C2/C1**2) + g/(2.*SqrtC1g))*((0.0833333*(-(C2**2/C1**2) +&
-      & C1*g)*(-3*C1 - 2*N1 + 6*S1 - SS1))/(dx*SqrtC1g) + ((0.5 + (0.5*C2)/(C1*SqrtC1g))*(-3*C2 - 2*N2 + 6*S2 - SS2))/(6.*dx))
+      & (0.0416667*g*(-(C2**2/C1**2) + C1*g)*(-3*C1 - 2*N1 + 6*S1 - SS1))/(dx*(C1*g)**1.5) + &
+      (((-0.25*C2*g)/(C1*(C1*g)**1.5) -&
+      & (0.5*C2)/(C1**2*SqrtC1g))*(-3*C2 - 2*N2 + 6*S2 - SS2))/(6.*dx)) + &
+      (-(C2/C1**2) + g/(2.*SqrtC1g))*((0.0833333*(-(C2**2/C1**2) +&
+      & C1*g)*(-3*C1 - 2*N1 + 6*S1 - SS1))/(dx*SqrtC1g) + &
+      ((0.5 + (0.5*C2)/(C1*SqrtC1g))*(-3*C2 - 2*N2 + 6*S2 - SS2))/(6.*dx))
     end if  
     call mapgr(ind,p,-1,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1108,8 +1129,10 @@ do p = Mx*My+1, 2*Mx*My
     call mapgr(ind,p,0,0,0)  !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*(-(0.5 + (0.5*C2)/(C1*SqrtC1g))/(2.*dx) -&
-      & (0.166667*C2*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1**2*dx*SqrtC1g) + (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g)) +&
-      & ((0.0833333*(-(C2**2/C1**2) + C1*g)*(-3*C1 - 2*N1 + 6*S1 - SS1))/(dx*SqrtC1g)+((0.5 + (0.5*C2)/(C1*SqrtC1g))*(-3*C2 - 2*N2 + 6*S2 - SS2))/(6.*dx))/C1
+      & (0.166667*C2*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1**2*dx*SqrtC1g) + &
+      (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g)) +&
+      & ((0.0833333*(-(C2**2/C1**2) + C1*g)*(-3*C1 - 2*N1 + 6*S1 - SS1))/&
+      (dx*SqrtC1g)+((0.5 + (0.5*C2)/(C1*SqrtC1g))*(-3*C2 - 2*N2 + 6*S2 - SS2))/(6.*dx))/C1
     end if  
     call mapgr(ind,p,0,1,0)  !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1159,7 +1182,7 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,-1,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=-C2/(2.*C1*dy) + (C2*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*C1**2*dy) - (C3*(3*C2 + 2*E2 - 6*W2 + WW2))/(6.*C1**2*dy)
+      JG(p,ind)=-C2/(2.*C1*dy) + (C2*(3*C1 + 2*E1 - 6*W1 + WW1))/(6.*C1**2*dy) -(C3*(3*C2 + 2*E2 - 6*W2 + WW2))/(6.*C1**2*dy)
     end if  
     call mapgr(ind,p,-1,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1196,7 +1219,8 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,-1,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=C2/(2.*C1*dy) + (C2*(-3*C1 + 6*E1 - EE1 - 2*W1))/(6.*C1**2*dy) - (C3*(-3*C2 + 6*E2 - EE2 - 2*W2))/(6.*C1**2*dy)
+      JG(p,ind)=C2/(2.*C1*dy) + (C2*(-3*C1 + 6*E1 - EE1 - 2*W1))/&
+      (6.*C1**2*dy) - (C3*(-3*C2 + 6*E2 - EE2 - 2*W2))/(6.*C1**2*dy)
     end if  
     call mapgr(ind,p,-1,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1245,8 +1269,11 @@ do p = Mx*My+1, 2*Mx*My
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((0.25*C2*(1 + C3/(C1*SqrtC1g)))/(C1*dy) +&
       & (0.0833333*C2*(-(C3*g)/(2.*C1*(C1*g)**1.5) - C3/(C1**2*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) -&
-      & (0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy) + (0.0416667*C2*g*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*(C1*g)**1.5) + &
-      & (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1**2*dy*SqrtC1g)) + (-(C3/C1**2) - g/(2.*SqrtC1g))*((0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) - (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))
+      & (0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy) + &
+      (0.0416667*C2*g*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*(C1*g)**1.5) + &
+      & (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1**2*dy*SqrtC1g)) + &
+      (-(C3/C1**2) - g/(2.*SqrtC1g))*((0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) - &
+      (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))
     end if  
     call mapgr(ind,p,-1,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1254,7 +1281,8 @@ do p = Mx*My+1, 2*Mx*My
     end if  
 	call mapgr(ind,p,0,0,0)   !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((0.0833333*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) - (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))
+      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((0.0833333*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) - &
+      (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))
     end if  
     call mapgr(ind,p,1,0,-2)  !WW3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1266,8 +1294,10 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,1,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((-0.25*C2)/(C1*dy*SqrtC1g) + (0.0833333*C2*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g)) +&
-      & ((0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) - (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))/C1
+      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((-0.25*C2)/(C1*dy*SqrtC1g) + &
+      (0.0833333*C2*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g)) +&
+      & ((0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) - &
+      (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,1,0,1)   !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1284,9 +1314,12 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,-1,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((-0.25*C2*(1 + C3/(C1*SqrtC1g)))/(C1*dy) + (0.0833333*C2*(-(C3*g)/(2.*C1*(C1*g)**1.5) -&
-      & C3/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) - (0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy) +&
-      & (0.0416667*C2*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*(C1*g)**1.5) + (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1**2*dy*SqrtC1g)) +&
+      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((-0.25*C2*(1 + C3/(C1*SqrtC1g)))/(C1*dy) +&
+       (0.0833333*C2*(-(C3*g)/(2.*C1*(C1*g)**1.5) -&
+      & C3/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) -&
+       (0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy) +&
+      & (0.0416667*C2*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*(C1*g)**1.5) +&
+       (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1**2*dy*SqrtC1g)) +&
       & (-(C3/C1**2) - g/(2.*SqrtC1g))*((0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) -&
       & (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))
     end if  
@@ -1309,8 +1342,10 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,1,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((0.25*C2)/(C1*dy*SqrtC1g) + (0.0833333*C2*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g)) +&
-      & ((0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) - (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))/C1
+      JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((0.25*C2)/(C1*dy*SqrtC1g) + &
+      (0.0833333*C2*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g)) +&
+      & ((0.0833333*C2*(1 + C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/&
+      (C1*dy) - (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,1,0,1)   !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1337,9 +1372,12 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,-1,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.25*C2*(1 - C3/(C1*SqrtC1g)))/(C1*dy) + (0.0833333*C2*((C3*g)/(2.*C1*(C1*g)**1.5) +&
-      & C3/(C1**2*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) - (0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy) -&
-      & (0.0416667*C2*g*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*(C1*g)**1.5) - (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1**2*dy*SqrtC1g)) + (-(C3/C1**2) +&
+      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.25*C2*(1 - C3/(C1*SqrtC1g)))/(C1*dy) +&
+       (0.0833333*C2*((C3*g)/(2.*C1*(C1*g)**1.5) +&
+      & C3/(C1**2*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) -&
+       (0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy) -&
+      & (0.0416667*C2*g*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*(C1*g)**1.5) -&
+       (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1**2*dy*SqrtC1g)) + (-(C3/C1**2) +&
       & g/(2.*SqrtC1g))*((0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) +&
       & (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))
     end if  
@@ -1362,8 +1400,10 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,1,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.25*C2)/(C1*dy*SqrtC1g) - (0.0833333*C2*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g)) +&
-      & ((0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) + (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))/C1
+      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.25*C2)/(C1*dy*SqrtC1g) -&
+       (0.0833333*C2*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g)) +&
+      & ((0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1*dy) + &
+      (0.0833333*C2*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,1,0,1)   !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1380,10 +1420,14 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,-1,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((-0.25*C2*(1 - C3/(C1*SqrtC1g)))/(C1*dy) + (0.0833333*C2*((C3*g)/(2.*C1*(C1*g)**1.5) +&
-      & C3/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) - (0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy) -&
-      & (0.0416667*C2*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*(C1*g)**1.5) - (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1**2*dy*SqrtC1g)) + (-(C3/C1**2) +&
-      & g/(2.*SqrtC1g))*((0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) + (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))
+      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((-0.25*C2*(1 - C3/(C1*SqrtC1g)))/(C1*dy) + &
+      (0.0833333*C2*((C3*g)/(2.*C1*(C1*g)**1.5) +&
+      & C3/(C1**2*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) - &
+      (0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy) -&
+      & (0.0416667*C2*g*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*(C1*g)**1.5) -&
+       (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1**2*dy*SqrtC1g)) + (-(C3/C1**2) +&
+      & g/(2.*SqrtC1g))*((0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) +&
+       (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))
     end if  
     call mapgr(ind,p,-1,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1395,7 +1439,8 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,0,0,0)   !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.0833333*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) + (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))
+      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.0833333*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) + &
+      (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))
     end if  
     call mapgr(ind,p,1,0,-1)  !W3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1403,8 +1448,10 @@ do p = Mx*My+1, 2*Mx*My
     end if  
     call mapgr(ind,p,1,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((-0.25*C2)/(C1*dy*SqrtC1g) - (0.0833333*C2*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g)) +&
-      & ((0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) + (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))/C1
+      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((-0.25*C2)/(C1*dy*SqrtC1g) - &
+      (0.0833333*C2*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g)) +&
+      & ((0.0833333*C2*(1 - C3/(C1*SqrtC1g))*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1*dy) +&
+       (0.0833333*C2*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,1,0,1)   !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1465,7 +1512,8 @@ do p=2*Mx*My+1, nvar
     end if
     call mapgr(ind,p,-2,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2*(-C3/(2.*C1*dx) + (C3*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*C1**2*dx)))/C1 - (C2*(-(C3*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*C1*dx) + (3*C3 - 6*N3 + NN3 + 2*S3)/(6.*dx)))/C1**2
+      JF(p,ind)=JF(p,ind)+(C2*(-C3/(2.*C1*dx) + (C3*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*C1**2*dx)))/C1 - &
+      (C2*(-(C3*(3*C1 - 6*N1 + NN1 + 2*S1))/(6.*C1*dx) + (3*C3 - 6*N3 + NN3 + 2*S3)/(6.*dx)))/C1**2
     end if  
     call mapgr(ind,p,-2,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1502,7 +1550,8 @@ do p=2*Mx*My+1, nvar
     end if  
     call mapgr(ind,p,-2,0,0)  !C1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2*(C3/(2.*C1*dx) + (C3*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*C1**2*dx)))/C1 - (C2*(-(C3*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*C1*dx) + (-3*C3 - 2*N3 + 6*S3 - SS3)/(6.*dx)))/C1**2
+      JF(p,ind)=JF(p,ind)+(C2*(C3/(2.*C1*dx) + (C3*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*C1**2*dx)))/C1 - &
+      (C2*(-(C3*(-3*C1 - 2*N1 + 6*S1 - SS1))/(6.*C1*dx) + (-3*C3 - 2*N3 + 6*S3 - SS3)/(6.*dx)))/C1**2
     end if  
     call mapgr(ind,p,-2,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1582,7 +1631,8 @@ do p=2*Mx*My+1, nvar
     end if  
     call mapgr(ind,p,0,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2/C1 - SqrtC1g)*((0.0833333*(1 + C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) - (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))
+      JF(p,ind)=JF(p,ind)+(C2/C1 - SqrtC1g)*((0.0833333*(1 + C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) &
+      - (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))
     end if  
 
   else
@@ -1619,7 +1669,8 @@ do p=2*Mx*My+1, nvar
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 - SqrtC1g)*((0.25*C3)/(C1*dx*SqrtC1g) +&
       & (0.0833333*C3*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1**2*dx*SqrtC1g)) +&
-      & ((0.0833333*C3*(1 + C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) - (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))/C1
+      & ((0.0833333*C3*(1 + C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) - &
+      (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,-1,1,0)  !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1653,8 +1704,11 @@ do p=2*Mx*My+1, nvar
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.25*C3*(1 - C2/(C1*SqrtC1g)))/(C1*dx) +&
       & (0.0833333*C3*((C2*g)/(2.*C1*(C1*g)**1.5) + C2/(C1**2*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) -&
-      & (0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx) - (0.0416667*C3*g*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*(C1*g)**1.5) -&
-      & (0.0833333*C3*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1**2*dx*SqrtC1g)) + (-(C2/C1**2) + g/(2.*SqrtC1g))*((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) + (0.0833333*C3*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))
+      & (0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx) - &
+      (0.0416667*C3*g*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*(C1*g)**1.5) -&
+      & (0.0833333*C3*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1**2*dx*SqrtC1g)) + (-(C2/C1**2) + &
+      g/(2.*SqrtC1g))*((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) +&
+       (0.0833333*C3*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))
     end if  
     call mapgr(ind,p,-2,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1670,8 +1724,10 @@ do p=2*Mx*My+1, nvar
     end if  
     call mapgr(ind,p,-1,0,0)  !C2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.25*C3)/(C1*dx*SqrtC1g) - (0.0833333*C3*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx*SqrtC1g)) +&
-      & ((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) + (0.0833333*C3*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))/C1
+      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.25*C3)/(C1*dx*SqrtC1g) - &
+      (0.0833333*C3*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1**2*dx*SqrtC1g)) +&
+      & ((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) + &
+      (0.0833333*C3*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,-1,1,0)  !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1679,7 +1735,8 @@ do p=2*Mx*My+1, nvar
     end if  
     call mapgr(ind,p,0,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.0833333*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) + (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))
+      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.0833333*(1 - C2/(C1*SqrtC1g))*(3*C1 - 6*N1 + NN1 + 2*S1))/(C1*dx) + &
+      (0.0833333*(3*C2 - 6*N2 + NN2 + 2*S2))/(C1*dx*SqrtC1g))
     end if  
 
   else
@@ -1694,8 +1751,11 @@ do p=2*Mx*My+1, nvar
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((-0.25*C3*(1 - C2/(C1*SqrtC1g)))/(C1*dx) +&
       & (0.0833333*C3*((C2*g)/(2.*C1*(C1*g)**1.5) + C2/(C1**2*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) -&
-      & (0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1**2*dx) - (0.0416667*C3*g*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*(C1*g)**1.5) -&
-      & (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1**2*dx*SqrtC1g)) + (-(C2/C1**2) + g/(2.*SqrtC1g))*((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) + (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))
+      & (0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1**2*dx) - &
+      (0.0416667*C3*g*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*(C1*g)**1.5) -&
+      & (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1**2*dx*SqrtC1g)) + (-(C2/C1**2) + &
+      g/(2.*SqrtC1g))*((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/&
+      (C1*dx) + (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))
     end if  
     call mapgr(ind,p,-2,1,0)  !S1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1713,7 +1773,8 @@ do p=2*Mx*My+1, nvar
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((-0.25*C3)/(C1*dx*SqrtC1g) -&
       & (0.0833333*C3*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1**2*dx*SqrtC1g)) +&
-      & ((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) + (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))/C1
+      & ((0.0833333*C3*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) + &
+      (0.0833333*C3*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))/C1
     end if  
     call mapgr(ind,p,-1,1,0)   !S2
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1725,7 +1786,8 @@ do p=2*Mx*My+1, nvar
     end if  
     call mapgr(ind,p,0,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.0833333*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) + (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))
+      JF(p,ind)=JF(p,ind)+(C2/C1 + SqrtC1g)*((0.0833333*(1 - C2/(C1*SqrtC1g))*(-3*C1 - 2*N1 + 6*S1 - SS1))/(C1*dx) + &
+      (0.0833333*(-3*C2 - 2*N2 + 6*S2 - SS2))/(C1*dx*SqrtC1g))
     end if  
 
   end if
@@ -1773,7 +1835,8 @@ do p=2*Mx*My+1, nvar
       &(0.0833333*((-2*C3**2)/C1**3 - g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) - &
       &(0.0416667*g*(C3**2/C1**2 - C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*(C1*g)**1.5) + (((0.25*C3*g)/(C1*(C1*g)**1.5) +&
       & (0.5*C3)/(C1**2*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy)) + (-(C3/C1**2) -&
-      & g/(2.*SqrtC1g))*((0.0833333*(C3**2/C1**2 - C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + ((0.5 - (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))
+      & g/(2.*SqrtC1g))*((0.0833333*(C3**2/C1**2 - C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + &
+      ((0.5 - (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))
     end if  
     call mapgr(ind,p,-2,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1790,8 +1853,10 @@ do p=2*Mx*My+1, nvar
     call mapgr(ind,p,0,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*((0.5 - (0.5*C3)/(C1*SqrtC1g))/(2.*dy) +&
-      & (0.166667*C3*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g) -  (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g)) +&
-      & ((0.0833333*(C3**2/C1**2 - C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + ((0.5 - (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))/C1
+      & (0.166667*C3*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g) -  &
+      (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g)) +&
+      & ((0.0833333*(C3**2/C1**2 - C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + &
+      ((0.5 - (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))/C1
     end if  
     call mapgr(ind,p,0,0,1)  !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1830,8 +1895,10 @@ do p=2*Mx*My+1, nvar
     call mapgr(ind,p,0,0,0)  !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 - SqrtC1g)*(-(0.5 - (0.5*C3)/(C1*SqrtC1g))/(2.*dy) +&
-      & (0.166667*C3*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g) -  (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g)) +&
-      & ((0.0833333*(C3**2/C1**2 - C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*SqrtC1g) + ((0.5 - (0.5*C3)/(C1*SqrtC1g))*(-3*C3 + 6*E3 - EE3 - 2*W3))/(6.*dy))/C1
+      & (0.166667*C3*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g) - &
+      (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g)) +&
+      & ((0.0833333*(C3**2/C1**2 - C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*SqrtC1g) +&
+       ((0.5 - (0.5*C3)/(C1*SqrtC1g))*(-3*C3 + 6*E3 - EE3 - 2*W3))/(6.*dy))/C1
     end if  
     call mapgr(ind,p,0,0,1)  !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1860,9 +1927,10 @@ do p=2*Mx*My+1, nvar
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.25*(-(C3**2/C1**2) + C1*g))/(dy*SqrtC1g) +&
       & (0.0833333*((2*C3**2)/C1**3 + g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) -&
-      & (0.0416667*g*(-(C3**2/C1**2) + C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*(C1*g)**1.5) + (((-0.25*C3*g)/(C1*(C1*g)**1.5) -&
+      & (0.0416667*g*(-(C3**2/C1**2) + C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*(C1*g)**1.5) +(((-0.25*C3*g)/(C1*(C1*g)**1.5) -&
       & (0.5*C3)/(C1**2*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy)) + (-(C3/C1**2) + &
-      & g/(2.*SqrtC1g))*((0.0833333*(-(C3**2/C1**2) + C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))
+      & g/(2.*SqrtC1g))*((0.0833333*(-(C3**2/C1**2) + C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + &
+      ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))
     end if  
     call mapgr(ind,p,-2,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1878,8 +1946,10 @@ do p=2*Mx*My+1, nvar
     end if  
     call mapgr(ind,p,0,0,0)   !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
-      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.5 + (0.5*C3)/(C1*SqrtC1g))/(2.*dy) - (0.166667*C3*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g) + &
-      & (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g)) + ((0.0833333*(-(C3**2/C1**2) + C1*g)*(3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))/C1
+      JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((0.5 + (0.5*C3)/(C1*SqrtC1g))/(2.*dy) - &
+      (0.166667*C3*(3*C1 + 2*E1 - 6*W1 + WW1))/(C1**2*dy*SqrtC1g) + &
+      & (0.0833333*(3*C3 + 2*E3 - 6*W3 + WW3))/(C1*dy*SqrtC1g)) + ((0.0833333*(-(C3**2/C1**2) + C1*g)*&
+      (3*C1 + 2*E1 - 6*W1 + WW1))/(dy*SqrtC1g) + ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(3*C3 + 2*E3 - 6*W3 + WW3))/(6.*dy))/C1
     end if  
     call mapgr(ind,p,0,0,1)   !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1898,9 +1968,11 @@ do p=2*Mx*My+1, nvar
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*((-0.25*(-(C3**2/C1**2) + C1*g))/(dy*SqrtC1g) +&
       & (0.0833333*((2*C3**2)/C1**3 + g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*SqrtC1g) - &
-      & (0.0416667*g*(-(C3**2/C1**2) + C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*(C1*g)**1.5) + (((-0.25*C3*g)/(C1*(C1*g)**1.5) -&
+      & (0.0416667*g*(-(C3**2/C1**2) + C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*(C1*g)**1.5) + &
+      (((-0.25*C3*g)/(C1*(C1*g)**1.5) -&
       & (0.5*C3)/(C1**2*SqrtC1g))*(-3*C3 + 6*E3 - EE3 - 2*W3))/(6.*dy)) + (-(C3/C1**2) +&
-      & g/(2.*SqrtC1g))*((0.0833333*(-(C3**2/C1**2) + C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*SqrtC1g) + ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(-3*C3 + 6*E3 - EE3 - 2*W3))/(6.*dy)) 
+      & g/(2.*SqrtC1g))*((0.0833333*(-(C3**2/C1**2) + C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*SqrtC1g) + &
+      ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(-3*C3 + 6*E3 - EE3 - 2*W3))/(6.*dy)) 
     end if  
     call mapgr(ind,p,-2,0,1)  !E1
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -1917,8 +1989,10 @@ do p=2*Mx*My+1, nvar
     call mapgr(ind,p,0,0,0)  !C3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
       JG(p,ind)=JG(p,ind)+(C3/C1 + SqrtC1g)*(-(0.5 + (0.5*C3)/(C1*SqrtC1g))/(2.*dy) -&
-      & (0.166667*C3*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g) + (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g)) +&
-      & ((0.0833333*(-(C3**2/C1**2) + C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*SqrtC1g) + ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(-3*C3 + 6*E3 - EE3 - 2*W3))/(6.*dy))/C1
+      & (0.166667*C3*(-3*C1 + 6*E1 - EE1 - 2*W1))/(C1**2*dy*SqrtC1g) + &
+      (0.0833333*(-3*C3 + 6*E3 - EE3 - 2*W3))/(C1*dy*SqrtC1g)) +&
+      & ((0.0833333*(-(C3**2/C1**2) + C1*g)*(-3*C1 + 6*E1 - EE1 - 2*W1))/(dy*SqrtC1g) + &
+      ((0.5 + (0.5*C3)/(C1*SqrtC1g))*(-3*C3 + 6*E3 - EE3 - 2*W3))/(6.*dy))/C1
     end if  
     call mapgr(ind,p,0,0,1)  !E3
     if ((ind .GE. 1) .AND. (ind .LE. nvar)) then
@@ -2391,7 +2465,8 @@ do j = my+2, 3, -1
     adgu3(1,1) = 0.d0
     g_adgu3(:,:) = 0.d0
     adgu3(:,:) = 0.d0
-    g_adhc =g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
+    g_adhc =g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+&
+    g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
 &sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc))+2*1/(2.*sqrt(g*hc))*g*1./(2.*sqrt(g*hc))*g*sqrt(g*hc)/(sqrt(g*hc)*sqrt(g*hc)*&
 &sqrt(g*hc)*sqrt(g*hc)))
     g_adisqrt = 0.d0
@@ -2449,7 +2524,8 @@ do j = my+2, 3, -1
     adgu2(1,1) = 0.d0
     g_adgu2(:,:) = 0.d0
     adgu2(:,:) = 0.d0
-    g_adhc = g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
+    g_adhc = g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+&
+    g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
 &sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc))+2*1/(2.*sqrt(g*hc))*g*1./(2.*sqrt(g*hc))*g*sqrt(g*hc)/(sqrt(g*hc)*sqrt(g*hc)*&
 &sqrt(g*hc)*sqrt(g*hc)))
     g_adisqrt = 0.d0
@@ -2475,7 +2551,8 @@ do j = my+2, 3, -1
     g_adeigg(2) = 0.d0
     adeigg(2) = 0.d0
     g_adu(3,i,j) = g_adeigg(1)/u(1,i,j)+g_adu(3,i,j)-g_u(1,i,j)*(adeigg(1)/(u(1,i,j)*u(1,i,j)))
-    g_adu(1,i,j) = (-(g_adeigg(1)*(u(3,i,j)/(u(1,i,j)*u(1,i,j)))))+g_adu(1,i,j)-g_u(3,i,j)*(adeigg(1)/(u(1,i,j)*u(1,i,j)))+g_u(1,i,&
+    g_adu(1,i,j) = (-(g_adeigg(1)*(u(3,i,j)/(u(1,i,j)*u(1,i,j)))))+g_adu(1,i,j)-&
+    g_u(3,i,j)*(adeigg(1)/(u(1,i,j)*u(1,i,j)))+g_u(1,i,&
 &j)*adeigg(1)*(2*u(3,i,j)*u(1,i,j)/(u(1,i,j)*u(1,i,j)*u(1,i,j)*u(1,i,j)))
     g_adeigg(1) = 0.d0
     adeigg(1) = 0.d0
@@ -2679,7 +2756,8 @@ do j = my+2, 3, -1
     adfu3(1,1) = 0.d0
     g_adfu3(:,:) = 0.d0
     adfu3(:,:) = 0.d0
-    g_adhc = g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
+    g_adhc = g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+&
+    g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
 &sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc))+2*1/(2.*sqrt(g*hc))*g*1./(2.*sqrt(g*hc))*g*sqrt(g*hc)/(sqrt(g*hc)*sqrt(g*hc)*&
 &sqrt(g*hc)*sqrt(g*hc)))
     g_adisqrt = 0.d0
@@ -2737,7 +2815,8 @@ do j = my+2, 3, -1
     adfu2(1,1) = 0.d0
     g_adfu2(:,:) = 0.d0
     adfu2(:,:) = 0.d0
-    g_adhc = g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
+    g_adhc = g_adhc-g_adisqrt*(1/(2.*sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc)))+&
+    g_hc*adisqrt*(2*1./(2.*sqrt(g*hc))*g/(4*sqrt(g*hc)*&
 &sqrt(g*hc))*g/(sqrt(g*hc)*sqrt(g*hc))+2*1/(2.*sqrt(g*hc))*g*1./(2.*sqrt(g*hc))*g*sqrt(g*hc)/(sqrt(g*hc)*sqrt(g*hc)*&
 &sqrt(g*hc)*sqrt(g*hc)))
     g_adisqrt = 0.d0
@@ -2751,12 +2830,14 @@ do j = my+2, 3, -1
     g_adfu1(:,:) = 0.d0
     adfu1(:,:) = 0.d0
     g_adu(3,i,j) = g_adu(3,i,j)+g_advc/u(1,i,j)-g_u(1,i,j)*(advc/(u(1,i,j)*u(1,i,j)))
-    g_adu(1,i,j) = g_adu(1,i,j)-g_advc*(u(3,i,j)/(u(1,i,j)*u(1,i,j)))-g_u(3,i,j)*(advc/(u(1,i,j)*u(1,i,j)))+g_u(1,i,j)*advc*(2*u(3,&
+    g_adu(1,i,j) = g_adu(1,i,j)-g_advc*(u(3,i,j)/(u(1,i,j)*u(1,i,j)))-g_u(3,i,j)*&
+    (advc/(u(1,i,j)*u(1,i,j)))+g_u(1,i,j)*advc*(2*u(3,&
 &i,j)*u(1,i,j)/(u(1,i,j)*u(1,i,j)*u(1,i,j)*u(1,i,j)))
     g_advc = 0.d0
     advc = 0.d0
     g_adu(2,i,j) = g_adu(2,i,j)+g_aduc/u(1,i,j)-g_u(1,i,j)*(aduc/(u(1,i,j)*u(1,i,j)))
-    g_adu(1,i,j) = g_adu(1,i,j)-g_aduc*(u(2,i,j)/(u(1,i,j)*u(1,i,j)))-g_u(2,i,j)*(aduc/(u(1,i,j)*u(1,i,j)))+g_u(1,i,j)*aduc*(2*u(2,&
+    g_adu(1,i,j) = g_adu(1,i,j)-g_aduc*(u(2,i,j)/(u(1,i,j)*u(1,i,j)))-g_u(2,i,j)*&
+    (aduc/(u(1,i,j)*u(1,i,j)))+g_u(1,i,j)*aduc*(2*u(2,&
 &i,j)*u(1,i,j)/(u(1,i,j)*u(1,i,j)*u(1,i,j)*u(1,i,j)))
     g_aduc = 0.d0
     aduc = 0.d0
@@ -2775,7 +2856,8 @@ do j = my+2, 3, -1
     g_adeigf(2) = 0.d0
     adeigf(2) = 0.d0
     g_adu(2,i,j) = g_adeigf(1)/u(1,i,j)+g_adu(2,i,j)-g_u(1,i,j)*(adeigf(1)/(u(1,i,j)*u(1,i,j)))
-    g_adu(1,i,j) = (-(g_adeigf(1)*(u(2,i,j)/(u(1,i,j)*u(1,i,j)))))+g_adu(1,i,j)-g_u(2,i,j)*(adeigf(1)/(u(1,i,j)*u(1,i,j)))+g_u(1,i,&
+    g_adu(1,i,j) = (-(g_adeigf(1)*(u(2,i,j)/(u(1,i,j)*u(1,i,j)))))+&
+    g_adu(1,i,j)-g_u(2,i,j)*(adeigf(1)/(u(1,i,j)*u(1,i,j)))+g_u(1,i,&
 &j)*adeigf(1)*(2*u(2,i,j)*u(1,i,j)/(u(1,i,j)*u(1,i,j)*u(1,i,j)*u(1,i,j)))
     g_adeigf(1) = 0.d0
     adeigf(1) = 0.d0

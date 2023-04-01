@@ -34,6 +34,7 @@ function(add_fatode_test test_name test_binary test_args working_dir)
   add_test(NAME ${test_name}
             COMMAND ${test_binary} ${test_args}
             WORKING_DIRECTORY ${working_dir})
+  set_tests_properties(${test_name} PROPERTIES TIMEOUT 60)  # seconds
 
   # copy data files to test working directory
   set(data_files ${ARGN})
