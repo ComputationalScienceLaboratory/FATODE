@@ -49,8 +49,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(FATODE_MOD_DIR "${PROJECT_BINARY_DIR}/include")
 set(FATODE_LIB_DIR "${PROJECT_BINARY_DIR}/lib")
 include(GNUInstallDirs)
-set(FATODE_INSTALL_PREFIX "${PROJECT_NAME}-${PROJECT_VERSION}" )
-set(FATODE_INSTALL_MOD_DIR "${INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}")
+
+set(INSTALL_PREFIX "${PROJECT_NAME}-${PROJECT_VERSION}")
+set(INSTALL_MOD_DIR "${INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}")
 
 ################################################################################
 # FATODE targets
@@ -132,4 +133,12 @@ set_target_properties(FATODE PROPERTIES
 if(PROJECT_IS_TOP_LEVEL AND ENABLE_TESTS)
   enable_testing()
   add_subdirectory(test)
+endif()
+
+################################################################################
+# Packaging
+
+# only include packaging if we are the top level project being built
+if(PROJECT_IS_TOP_LEVEL)
+  add_subdirectory(packaging)
 endif()
