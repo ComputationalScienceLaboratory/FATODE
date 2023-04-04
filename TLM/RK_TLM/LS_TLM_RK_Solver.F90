@@ -437,7 +437,7 @@ contains
       ldb = nvar
       nrhs = 1
       if(factors .ne. 0) then
-        call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+        call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, ising )
       end if
 
@@ -467,7 +467,7 @@ contains
       ap(nvar+1) = nnz + 1
   !   factorize the matrix. The factors are stored in *factors* handle.
       iopt = 1
-      call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           b, ldb, factors, ising )
   
       if(ising .ne. 0) then
@@ -485,7 +485,7 @@ contains
       ldb = nvar
       nrhs = 1 
       if(factors_cmp .ne. 0) then
-        call zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai,ap,&
+        call c_fortran_zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai,ap,&
                        bc, ldb, factors_cmp, ising )
       end if
 
@@ -504,7 +504,7 @@ contains
       end do
   !   factorize the matrix. The factors are stored in *factors* handle.
       iopt = 1
-      call zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
+      call c_fortran_zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
                           bc, ldb, factors_cmp, ising )
 
       if(ising .ne. 0) then
@@ -524,7 +524,7 @@ contains
       nrhs = 1
       ldb = 3*nvar
       if(factors_big .ne. 0) then
-        call dgssv( tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
+        call c_fortran_dgssv( tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
                        b_big,ldb,factors_big, ising )
       end if
 
@@ -563,7 +563,7 @@ contains
     !last element in ap must be nnza+1
       ap_big(3*nvar+1) = 9*nnz + 1
       iopt = 1
-      call dgssv(tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
+      call c_fortran_dgssv(tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
                           b_big, ldb, factors_big, ising )
       if(ising .ne. 0) then
         write(*,*) 'INFO from failed factorization = ', ising
@@ -585,7 +585,7 @@ contains
     else
       tr = 0
     end if
-    call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           rhs, ldb, factors, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve = ', info
@@ -608,7 +608,7 @@ contains
     do i = 1,nvar
       bc(i) = cmplx(rhs(i),rhsz(i))
     end do
-    call zgssv(tr,iopt,nvar,nnz,nrhs,axc, ai, ap,&
+    call c_fortran_zgssv(tr,iopt,nvar,nnz,nrhs,axc, ai, ap,&
                           bc, ldb, factors_cmp, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve cmp = ', info
@@ -632,7 +632,7 @@ contains
     else
       tr = 0
     end if
-    call dgssv(tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
+    call c_fortran_dgssv(tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
                           rhs, ldb, factors_big, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve big = ', info
@@ -661,15 +661,15 @@ contains
       iopt = 3
       ldb = nvar
       tr = 0
-      call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, info )
       if(factors_cmp .ne. 0) then
-        call zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
+        call c_fortran_zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
                        bc, ldb, factors_cmp, info )
       end if
       if(factors_big .ne. 0) then
         ldb = 3*nvar
-        call dgssv( tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
+        call c_fortran_dgssv( tr,iopt,3*nvar,9*nnz,nrhs,ax_big,ai_big,ap_big,&
                        b_big,ldb,factors_big, info )
       end if
       deallocate(ax,b,ai,ap,axc,bc,ax_big,b_big,ai_big,ap_big,fjac,&

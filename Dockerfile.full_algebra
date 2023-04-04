@@ -7,7 +7,6 @@ RUN dnf -y update \
         cmake \
         gcc \
         gcc-fortran \
-        lapack \
         make \
     && dnf clean all
 

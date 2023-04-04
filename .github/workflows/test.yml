@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_test_lapack:
+  build_test_full_algebra:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     steps:
@@ -18,3 +18,25 @@ jobs:
       run: docker build -t fatode.full_algebra -f Dockerfile.full_algebra .
     - name: run tests in container
       run: docker run --name test-container -t fatode.full_algebra bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'
+  build_test_superlu:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: build Docker image
+      run: docker build -t fatode.superlu -f Dockerfile.superlu .
+    - name: run tests in container
+      run: docker run --name test-container -t fatode.superlu bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'
+  build_test_umf:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: build Docker image
+      run: docker build -t fatode.umf -f Dockerfile.umf .
+    - name: run tests in container
+      run: docker run --name test-container -t fatode.umf bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'

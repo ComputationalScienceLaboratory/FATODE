@@ -1,0 +1,34 @@
+from fedora:37
+
+RUN dnf -y update \
+    && dnf -y install \
+        blas-devel \
+        lapack-devel \ 
+        cmake \
+        gcc \
+        gcc-c++ \
+        gcc-fortran \
+        make \
+    && dnf clean all
+
+# Build the SuiteSparse libraries for sparse matrix support
+RUN curl -LO https://github.com/xiaoyeli/superlu/archive/refs/tags/v5.3.0.tar.gz \
+    && tar -zxvf v5.3.0.tar.gz
+
+RUN export CXX=/usr/bin/cc \
+    && cd /superlu-5.3.0 \
+    && mkdir build && cd build \
+    && cmake -D enable_internal_blaslib=OFF \
+             .. \
+    && make -j 8 && make install
+
+# build the FATODE library
+COPY . /FATODE/
+RUN mkdir /build \
+      && cd /build \
+      && cmake -D CMAKE_BUILD_TYPE=release \
+               -D USE_SUPER_LU=ON \
+               /FATODE \
+      && make
+
+WORKDIR /build

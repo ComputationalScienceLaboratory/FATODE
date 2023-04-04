@@ -292,7 +292,7 @@ contains
       tr = 0 
       if(factors .ne. 0) then
         iopt = 3
-        call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+        call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                          b, ldb, factors, ising )
       end if
 
@@ -322,7 +322,7 @@ contains
       ap(nvar+1) = nnz + 1
   !   factorize the matrix. The factors are stored in *factors* handle.
       iopt = 1
-      call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           b, ldb, factors, ising )
   
       if(ising .ne. 0) then
@@ -341,7 +341,7 @@ contains
       tr = 0
       if(factors_tlm .ne. 0) then
         iopt = 3
-        call dgssv(tr,iopt,nvar,nnz,nrhs,ax_tlm,ai_tlm,ap_tlm,&
+        call c_fortran_dgssv(tr,iopt,nvar,nnz,nrhs,ax_tlm,ai_tlm,ap_tlm,&
                        b, ldb, factors_tlm, ising )
       end if
 
@@ -370,7 +370,7 @@ contains
       !last element in ap must be nnza+1
       ap_tlm(nvar+1) = nnz + 1
   !   factorize the matrix. The factors are stored in *factors* handle.
-      call dgssv( tr, iopt, nvar, nnz, nrhs, ax_tlm, ai_tlm, ap_tlm,&
+      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax_tlm, ai_tlm, ap_tlm,&
                           b, ldb, factors_tlm, ising )
 
       if(ising .ne. 0) then
@@ -392,7 +392,7 @@ contains
     else
       tr = 0
     end if
-    call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           rhs, ldb, factors, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve = ', info
@@ -413,7 +413,7 @@ contains
     else
       tr = 0
     end if
-    call dgssv( tr, iopt, nvar, nnz, nrhs, ax_tlm, ai_tlm, ap_tlm,&
+    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax_tlm, ai_tlm, ap_tlm,&
                           rhs, ldb, factors_tlm, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve = ', info
@@ -441,10 +441,10 @@ contains
       nrhs = 1
       tr = 0
       ldb = nvar
-      call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b,ldb,factors,info )
       if (factors_tlm .ne. 0) then     
-        call dgssv(tr,iopt,nvar,nnz,nrhs,ax_tlm,ai_tlm,ap_tlm,&
+        call c_fortran_dgssv(tr,iopt,nvar,nnz,nrhs,ax_tlm,ai_tlm,ap_tlm,&
                        b,ldb,factors_tlm,info )
       end if
       deallocate(ax,ax_tlm,b,ai,ai_tlm,ap,ap_tlm,fjac,fjac1,STAT=state)
