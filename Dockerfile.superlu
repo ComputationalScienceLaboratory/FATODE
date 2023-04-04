@@ -11,7 +11,7 @@ RUN dnf -y update \
         make \
     && dnf clean all
 
-# Build the SuiteSparse libraries for sparse matrix support
+# Build the SuperLU libraries for sparse matrix support
 RUN curl -LO https://github.com/xiaoyeli/superlu/archive/refs/tags/v5.3.0.tar.gz \
     && tar -zxvf v5.3.0.tar.gz
 
