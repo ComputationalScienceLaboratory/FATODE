@@ -24,7 +24,7 @@ option(ENABLE_TESTS "Build tests" ON)
 # TODO: instead of using the included files pulled from the host repositories, add an option to link to the libraries
 option(USE_SUITESPARSE_UMF "Build with SuiteSpare UMF support" OFF)
 option(USE_SUPER_LU "Build with SuperLU SUPPORT" OFF)
-option(USE_FULL_ALGEBRA "Set this if you want to do all of the algebra. Otherwise set the SuperLU or UMF options to use a sparse matrix approach." OFF)
+option(USE_FULL_ALGEBRA "Set this if you want to do all of the algebra. Otherwise set the SuperLU or UMF options to use a sparse matrix approach." ON)
 
 include(exclusive_options)
 check_mutually_exclusive_options(USE_SUPER_LU USE_SUITESPARSE_UMF USE_FULL_ALGEBRA)

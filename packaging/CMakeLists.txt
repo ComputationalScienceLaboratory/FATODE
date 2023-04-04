@@ -7,6 +7,7 @@ install(
     fatode_Exports
   LIBRARY DESTINATION ${INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
+  COMPONENT FATODE-Library
 )
 
 # install the mod files
@@ -63,3 +64,6 @@ if(NOT TARGET uninstall)
   add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 endif()
+
+include(CPack)
+cpack_add_component(FATODE-Library)
