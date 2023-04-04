@@ -2,51 +2,51 @@ include(CMakePackageConfigHelpers)
 
 install(
   TARGETS 
-    FATODE ADJ TLM FWD
+    FATODE
   EXPORT 
-    fatode_Exports
+    ${PROJECT_NAME}_Exports
   LIBRARY DESTINATION ${INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
-  COMPONENT FATODE-Library
+  COMPONENT ${PROJECT_NAME}-Library
 )
 
 # install the mod files
 install(
   DIRECTORY 
-    ${FATODE_MOD_DIR}/
+    ${${PROJECT_NAME}_MOD_DIR}/
   DESTINATION 
-    ${INSTALL_MOD_DIR}
+    ${FATODE_INSTALL_MOD_DIR}
   FILES_MATCHING PATTERN "*.mod"
 )
 
 # install the cmake config files
-set(cmake_config_install_location ${INSTALL_PREFIX}/cmake/fatode-${PROJECT_VERSION})
+set(cmake_config_install_location ${INSTALL_PREFIX}/cmake/${PROJECT_NAME}-${PROJECT_VERSION})
 
 install(
   EXPORT 
-    fatode_Exports
+    ${PROJECT_NAME}_Exports
   DESTINATION 
     ${cmake_config_install_location}
   NAMESPACE csl::
 )
 
 configure_package_config_file(
-  "${PROJECT_SOURCE_DIR}/cmake/fatodeConfig.cmake.in"
-  "${PROJECT_BINARY_DIR}/fatodeConfig.cmake"
+  "${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
   INSTALL_DESTINATION
     ${cmake_config_install_location}
 )
 
 write_basic_package_version_file(
-  "${PROJECT_BINARY_DIR}/fatodeConfigVersion.cmake"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY SameMajorVersion
 )
 
 install(
   FILES
-    ${PROJECT_BINARY_DIR}/fatodeConfig.cmake
-    ${PROJECT_BINARY_DIR}/fatodeConfigVersion.cmake
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
   DESTINATION
     ${cmake_config_install_location}
 )
@@ -65,5 +65,5 @@ if(NOT TARGET uninstall)
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 endif()
 
-include(CPack)
-cpack_add_component(FATODE-Library)
+# include(CPack)
+# cpack_add_component(${PROJECT_NAME}-Library)
