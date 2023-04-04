@@ -223,7 +223,7 @@ SUBROUTINE RosenbrockTLM(N,NNZERO,Y,NTLM,Y_tlm,                      &
 !    RSTATUS(2)  -> Hexit, last accepted step before exit
 !    For multiple restarts, use Hexit as Hstart in the following run 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  USE LS_Solver
+  use ls_tlm_ros_solver
   IMPLICIT NONE
    
 !~~~>  Arguments   
@@ -804,7 +804,7 @@ Stage: DO istage = 1, ros_S
 !       -half the step size if LU decomposition fails and retry
 !       -exit after 5 consecutive fails
 ! --- --- --- --- --- --- --- --- --- --- --- --- ---
-   USE LS_Solver
+   use ls_tlm_ros_solver
    IMPLICIT NONE         
    
 !~~~> Input arguments   

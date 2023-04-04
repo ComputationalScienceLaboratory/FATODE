@@ -1,0 +1,22 @@
+from fedora:37
+
+RUN dnf -y update \
+    && dnf -y install \
+        blas-devel \
+        lapack-devel \ 
+        cmake \
+        gcc \
+        gcc-fortran \
+        make \
+    && dnf clean all
+
+# build the FATODE library
+COPY . /FATODE/
+RUN mkdir /build \
+      && cd /build \
+      && cmake -D CMAKE_BUILD_TYPE=release \
+               -D USE_FULL_ALGEBRA=ON \
+               /FATODE \
+      && make -j 8
+
+WORKDIR /build

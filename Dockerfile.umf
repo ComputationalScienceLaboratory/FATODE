@@ -1,0 +1,34 @@
+from fedora:37
+
+RUN dnf -y update \
+    && dnf -y install \
+        blas-devel \
+        lapack-devel \ 
+        cmake \
+        gcc \
+        gcc-c++ \
+        gcc-fortran \
+        lapack \
+        make \
+        openblas-devel \
+    && dnf clean all
+
+# Build the SuiteSparse libraries for sparse matrix support
+RUN curl -LO https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v7.0.1.tar.gz \
+    && tar -zxvf v7.0.1.tar.gz
+
+RUN export CXX=/usr/bin/cc \
+    && cd /SuiteSparse-7.0.1/SuiteSparse_config && make -j 8 && make install \
+    && cd /SuiteSparse-7.0.1/AMD                && make -j 8 && make install \
+    && cd /SuiteSparse-7.0.1/UMFPACK            && make -j 8 && make install
+
+# build the FATODE library
+COPY . /FATODE/
+RUN mkdir /build \
+      && cd /build \
+      && cmake -D CMAKE_BUILD_TYPE=release \
+               -D USE_SUITESPARSE_UMF=ON \
+               /FATODE \
+      && make -j 8
+
+WORKDIR /build

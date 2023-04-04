@@ -1,4 +1,6 @@
 # FATODE
+[![License](https://img.shields.io/github/license/ComputationalScienceLaboratory/FATODE.svg)](https://github.com/ComputationalScienceLaboratory/FATODE/blob/master/LICENSE)
+[![CI Status](https://github.com/ComputationalScienceLaboratory/FATODE/actions/workflows/test.yml/badge.svg)](https://github.com/ComputationalScienceLaboratory/FATODE/actions/workflows/test.yml)
 
 FATODE version 1.2
 by Hong Zhang and Adrian Sandu
@@ -21,7 +23,7 @@ FATODE contains the following directory structure:
     FATODE/ADJ         adjoint model integrators
     FATODE/TLM         tangent linear model integrators
     FATODE/LSS_LIBS    lib files of linear solvers
-    FATODE/EXAMPLES    example programs
+    FATODE/test        example programs that also function as tests
     FATODE/DOC         documentation (user's guide)
 
 FATODE implementation requires BLAS and LAPACK libraries. For solution of
@@ -45,6 +47,10 @@ For usage of FATODE, please refer to the user's guide, as well as the example pr
 
 ## Changes
 
+### Changes from Version 1.2.1
+- The library is now built with CMake
+- Dockerfiles that build the library with different algebra schemes are included
+
 ### Changes from Version 1.1
 Bug fixes:
 - Fixed a possible initilization problem of method coefficients for windows users.
@@ -62,3 +68,42 @@ Complier options:
 - ifort sometimes reulsts in inconsistent output with other compilers due to floating-point calculation consistency. The option -mp can solve this problem.
 Documentation:
 - Add a user's guide for FATODE
+
+
+# Installation
+
+1. Clone the repository
+2. Install the depencencies for the linear algebra library you would like to use. The options are SuiteSparse, SuperLU, or a full algebra solve with lapack. All versions require lapack.
+3. Make a build directory `cd FATODE && mkdir build && cd build`
+4. Configure the project with the options that you want. The most important options are the type of linear algebra library, SuiteSparse, SuperLU, or full algebra (driven by lapack).
+    - SuiteSparse: `cmake -D USE_SUITESPARSE_UMF=ON ..`
+    - SuperLU: `cmake -D USE_SUPER_LU=ON ..`
+    - Full Algebra `cmake -D USE_FULL_ALGEBRA=ON ..`
+5. Build `make`
+6. Install `make install`
+
+## Usage
+After installing, you can find the libray with cmake like this
+
+```
+cmake_minimum_required(VERSION 3.21)
+
+project(
+  example
+  VERSION 0.0
+  LANGUAGES Fortran
+)
+
+find_package(LAPACK REQUIRED)
+
+find_package(FATODE 1.2.1 REQUIRED)
+
+add_executable(test
+  cbm4_rk_dr.F90 cbm4_parameters.F90
+)
+
+target_link_libraries(test
+  PUBLIC
+    csl::FATODE
+)
+```
