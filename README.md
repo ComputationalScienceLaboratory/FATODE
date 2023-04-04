@@ -1,4 +1,6 @@
 # FATODE
+[![License](https://img.shields.io/github/license/ComputationalScienceLaboratory/FATODE.svg)](https://github.com/ComputationalScienceLaboratory/FATODE/blob/master/LICENSE)
+[![CI Status](https://github.com/ComputationalScienceLaboratory/FATODE/actions/workflows/test.yml/badge.svg)](https://github.com/ComputationalScienceLaboratory/FATODE/actions/workflows/test.yml)
 
 FATODE version 1.2
 by Hong Zhang and Adrian Sandu
@@ -74,9 +76,9 @@ Documentation:
 2. Install the depencencies for the linear algebra library you would like to use. The options are SuiteSparse, SuperLU, or a full algebra solve with lapack. All versions require lapack.
 3. Make a build directory `cd FATODE && mkdir build && cd build`
 4. Configure the project with the options that you want. The most important options are the type of linear algebra library, SuiteSparse, SuperLU, or full algebra (driven by lapack).
-    1. SuiteSparse: `cmake -D USE_SUITESPARSE_UMF=ON ..`
-    1. SuperLU: `cmake -D USE_SUPER_LU=ON ..`
-    1. Full Algebra `cmake -D USE_FULL_ALGEBRA=ON ..`
+    - SuiteSparse: `cmake -D USE_SUITESPARSE_UMF=ON ..`
+    - SuperLU: `cmake -D USE_SUPER_LU=ON ..`
+    - Full Algebra `cmake -D USE_FULL_ALGEBRA=ON ..`
 5. Build `make`
 6. Install `make install`
 
