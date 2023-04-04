@@ -65,5 +65,5 @@ if(NOT TARGET uninstall)
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 endif()
 
-# include(CPack)
-# cpack_add_component(${PROJECT_NAME}-Library)
+include(CPack)
+cpack_add_component(${PROJECT_NAME}-Library)
