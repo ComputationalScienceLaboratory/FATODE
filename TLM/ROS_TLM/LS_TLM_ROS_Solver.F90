@@ -194,7 +194,7 @@ contains
       tr = 0 
       if(factors .ne. 0) then
         iopt = 3
-        call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+        call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, ising )
       end if
 
@@ -224,7 +224,7 @@ contains
       ap(nvar+1) = nnz + 1
   !   factorize the matrix. The factors are stored in *factors* handle.
       iopt = 1
-      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           b, ldb, factors, ising)
   
       if(ising .ne. 0) then
@@ -247,7 +247,7 @@ contains
     else
       tr = 0
     end if
-    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           rhs, ldb, factors, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve = ', info
@@ -271,7 +271,7 @@ contains
       ldb = nvar
       nrhs = 1
       tr = 0
-      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, info )
       deallocate(ax,b,ai,ap,fjac,fjac1,djdt,STAT=state)
       if(state .ne. 0) then

@@ -11,12 +11,12 @@ RUN dnf -y update \
         make \
     && dnf clean all
 
-# build the tuv-x tool
+# build the FATODE library
 COPY . /FATODE/
 RUN mkdir /build \
       && cd /build \
       && cmake -D CMAKE_BUILD_TYPE=release \
-               -D USE_LAPACK=ON \
+               -D USE_FULL_ALGEBRA=ON \
                /FATODE \
       && make -j 8
 

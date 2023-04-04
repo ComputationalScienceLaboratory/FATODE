@@ -21,14 +21,14 @@ set_target_properties(TLM_OBJECTS PROPERTIES
   Fortran_MODULE_DIRECTORY ${TLM_MOD_DIR}
 )
 
-if (USE_SUITESPARSE_LU)
-  target_compile_definitions(TLM_OBJECTS PUBLIC $<$<BOOL:${USE_SUITESPARSE_LU}>:SPARSE_LU>)
+if (USE_SUPER_LU)
+  target_compile_definitions(TLM_OBJECTS PUBLIC $<$<BOOL:${USE_SUPER_LU}>:SPARSE_LU>)
 endif()
 if (USE_SUITESPARSE_UMF)
   target_compile_definitions(TLM_OBJECTS PUBLIC $<$<BOOL:${USE_SUITESPARSE_UMF}>:SPARSE_UMF>)
 endif()
-if (USE_LAPACK)
-  target_compile_definitions(TLM_OBJECTS PUBLIC $<$<BOOL:${USE_LAPACK}>:FULL_ALGEBRA>)
+if (USE_FULL_ALGEBRA)
+  target_compile_definitions(TLM_OBJECTS PUBLIC $<$<BOOL:${USE_FULL_ALGEBRA}>:FULL_ALGEBRA>)
 endif()
 
 add_subdirectory(ERK_TLM)

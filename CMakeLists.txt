@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.21)
 project(
   FATODE
   VERSION 1.2.0
-  LANGUAGES Fortran
+  LANGUAGES Fortran C
 )
 
 message(STATUS "CMake build configuration for ${PROJECT_NAME}(${CMAKE_BUILD_TYPE}) ${PROJECT_VERSION}")
@@ -23,14 +23,25 @@ option(ENABLE_TESTS "Build tests" ON)
 
 # TODO: instead of using the included files pulled from the host repositories, add an option to link to the libraries
 option(USE_SUITESPARSE_UMF "Build with SuiteSpare UMF support" OFF)
-option(USE_SUITESPARSE_LU "Build with SuiteSpare LU SUPPORT" OFF)
-option(USE_LAPACK "Build with LAPACK support" OFF)
+option(USE_SUPER_LU "Build with SuperLU SUPPORT" OFF)
+option(USE_FULL_ALGEBRA "Set this if you want to do all of the algebra. Otherwise set the SuperLU or UMF options to use a sparse matrix approach." OFF)
 
 include(exclusive_options)
-check_mutually_exclusive_options(USE_SUITESPARSE_LU USE_SUITESPARSE_UMF USE_LAPACK)
+check_mutually_exclusive_options(USE_SUPER_LU USE_SUITESPARSE_UMF USE_FULL_ALGEBRA)
 
-if(USE_LAPACK)
-  find_package(LAPACK REQUIRED)
+find_package(LAPACK REQUIRED)
+
+if(USE_SUITESPARSE_UMF)
+  set(CMAKE_PREFIX_PATH "/usr/local/")
+  find_package(UMFPACK
+    HINTS
+      /opt/homebrew/Cellar/suite-sparse/7.0.1/
+    REQUIRED
+  )
+endif()
+
+if(USE_SUPER_LU)
+  find_package(superlu REQUIRED)
 endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -74,10 +85,28 @@ if(INCLUDE_TANGENT_LINEAR_SOLVERS)
   )
 endif()
 
-if(USE_LAPACK)
+add_subdirectory(LSS_LIBS)
+
+target_link_libraries(FATODE
+  PUBLIC
+    LAPACK::LAPACK
+)
+
+if(USE_SUITESPARSE_UMF)
   target_link_libraries(FATODE
     PUBLIC
-      LAPACK::LAPACK
+      ${UMFPACK_LIBRARY}
+  )
+  target_include_directories(FATODE
+    PUBLIC
+      ${UMFPACK_INCLUDE_DIR}
+  )
+endif()
+
+if(USE_SUPER_LU)
+  target_link_libraries(FATODE
+    PUBLIC
+      superlu::superlu
   )
 endif()
 

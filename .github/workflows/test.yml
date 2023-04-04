@@ -15,6 +15,6 @@ jobs:
       with:
         submodules: recursive
     - name: build Docker image
-      run: docker build -t fatode.lapack -f Dockerfile.lapack .
+      run: docker build -t fatode.full_algebra -f Dockerfile.full_algebra .
     - name: run tests in container
-      run: docker run --name test-container -t fatode.lapack bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'
+      run: docker run --name test-container -t fatode.full_algebra bash -c 'make test ARGS="--rerun-failed --output-on-failure -j8"'

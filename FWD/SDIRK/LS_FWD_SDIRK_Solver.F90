@@ -164,7 +164,7 @@ contains
     tr = 0
     if(factors .ne. 0) then 
       iopt = 3
-      call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, info )
     end if
 
@@ -194,7 +194,7 @@ contains
     ap(nvar+1) = nnz + 1
 !   factorize the matrix. The factors are stored in *factors* handle.
     iopt = 1
-    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           b, ldb, factors, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed factorization = ', info
@@ -206,7 +206,7 @@ contains
     double precision :: rhs(nvar)
 !   solve the system using the existing factors.
     iopt = 2
-    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           rhs, ldb, factors, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve = ', info
@@ -230,7 +230,7 @@ contains
     deallocate(ax,ai,ap,b,fjac,STAT=state)
     if(state .ne. 0) stop 'Deallocation error in superlu_free'
     iopt = 3
-    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, info )
     end subroutine superlu_free
 
