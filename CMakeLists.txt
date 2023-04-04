@@ -32,10 +32,10 @@ check_mutually_exclusive_options(USE_SUPER_LU USE_SUITESPARSE_UMF USE_FULL_ALGEB
 find_package(LAPACK REQUIRED)
 
 if(USE_SUITESPARSE_UMF)
-  set(CMAKE_PREFIX_PATH "/usr/local/")
+  set(CMAKE_MODULE_PATH "/opt/homebrew/lib/cmake/SuiteSparse;${CMAKE_MODULE_PATH}")
+  set(CMAKE_MODULE_PATH "/usr/local/lib64/cmake/SuiteSparse;${CMAKE_MODULE_PATH}")
   find_package(UMFPACK
-    HINTS
-      /opt/homebrew/Cellar/suite-sparse/7.0.1/
+    MODULE
     REQUIRED
   )
 endif()
