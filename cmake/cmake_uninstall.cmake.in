@@ -21,17 +21,3 @@ foreach(file ${files})
     message(STATUS "File $ENV{DESTDIR}${file} does not exist.")
   endif()
 endforeach()
-
-set(uninstall_dirs "@cmake_config_install_location@")
-
-foreach(dir IN LISTS uninstall_dirs)
-  message(STATUS "Uninstalling ${dir}")
-  exec_program(
-    "@CMAKE_COMMAND@" ARGS "-E remove_directory ${dir}"
-    OUTPUT_VARIABLE rm_out
-    RETURN_VALUE rm_retval
-    )
-  if(NOT "${rm_retval}" STREQUAL 0)
-    message(FATAL_ERROR "Problem when removing ${dir}")
-  endif()
-endforeach()
