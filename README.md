@@ -66,3 +66,42 @@ Complier options:
 - ifort sometimes reulsts in inconsistent output with other compilers due to floating-point calculation consistency. The option -mp can solve this problem.
 Documentation:
 - Add a user's guide for FATODE
+
+
+# Installation
+
+1. Clone the repository
+2. Install the depencencies for the linear algebra library you would like to use. The options are SuiteSparse, SuperLU, or a full algebra solve with lapack. All versions require lapack.
+3. Make a build directory `cd FATODE && mkdir build && cd build`
+4. Configure the project with the options that you want. The most important options are the type of linear algebra library, SuiteSparse, SuperLU, or full algebra (driven by lapack).
+    1. SuiteSparse: `cmake -D USE_SUITESPARSE_UMF=ON ..`
+    1. SuperLU: `cmake -D USE_SUPER_LU=ON ..`
+    1. Full Algebra `cmake -D USE_FULL_ALGEBRA=ON ..`
+5. Build `make`
+6. Install `make install`
+
+## Usage
+After installing, you can find the libray with cmake like this
+
+```
+cmake_minimum_required(VERSION 3.21)
+
+project(
+  example
+  VERSION 0.0
+  LANGUAGES Fortran
+)
+
+find_package(LAPACK REQUIRED)
+
+find_package(FATODE 1.2.1 REQUIRED)
+
+add_executable(test
+  cbm4_rk_dr.F90 cbm4_parameters.F90
+)
+
+target_link_libraries(test
+  PUBLIC
+    csl::FATODE
+)
+```
