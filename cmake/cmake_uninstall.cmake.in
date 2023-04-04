@@ -22,7 +22,7 @@ foreach(file ${files})
   endif()
 endforeach()
 
-set(uninstall_dirs "@INSTALL_PREFIX@;@cmake_config_install_location@")
+set(uninstall_dirs "@cmake_config_install_location@")
 
 foreach(dir IN LISTS uninstall_dirs)
   message(STATUS "Uninstalling ${dir}")

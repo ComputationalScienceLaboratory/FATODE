@@ -254,15 +254,14 @@ contains
     subroutine superlu_decomp(ising,hgamma)
     !convert the matrix e from coordinate format to column compressed format
     integer :: i,j,idx,found,ising
-    integer :: tr, iopt, ldb, nrhs
+    integer :: iopt, ldb, nrhs
     double precision :: hgamma
 !   free previouslu used memory
-    tr = 0
     nrhs = 1
     ldb = nvar
     if(factors .ne. 0) then
       iopt = 3
-      call c_fortran_dgssv(tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+      call c_fortran_dgssv(iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, ising )
     end if
 
@@ -292,7 +291,7 @@ contains
     ap(nvar+1) = nnz + 1
 !   factorize the matrix. The factors are stored in *factors* handle.
     iopt = 1
-    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call c_fortran_dgssv( iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           b, ldb, factors, ising )
     if(ising .ne. 0) then
       write(*,*) 'INFO from failed factorization = ', ising
@@ -301,13 +300,12 @@ contains
 
     subroutine superlu_solve(rhs)
     double precision :: rhs(nvar)
-    integer :: info, tr, iopt, ldb, nrhs
+    integer :: info, iopt, ldb, nrhs
 !   solve the system using the existing factors.
     iopt = 2
-    tr = 0
     ldb = nvar
     nrhs = 1
-    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call c_fortran_dgssv( iopt, nvar, nnz, nrhs, ax, ai, ap,&
                           rhs, ldb, factors, info )
     if(info .ne. 0) then
       write(*,*) 'INFO from failed triangular solve = ', info
@@ -317,15 +315,14 @@ contains
     subroutine superlu_decomp_cmp(ising,alpha,beta)
     !convert the matrix e from coordinate format to column compressed format
     integer :: i,j,idx,ising
-    integer :: tr, iopt, ldb, nrhs
+    integer :: iopt, ldb, nrhs
     double precision :: alpha, beta
 !   free previouslu used memory
     nrhs = 1
     ldb = nvar
-    tr = 0
     if(factors_cmp .ne. 0) then
       iopt = 3
-      call c_fortran_zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
+      call c_fortran_zgssv( iopt, nvar, nnz, nrhs, axc, ai, ap,&
                         bc, ldb, factors_cmp, ising )
     end if
 
@@ -345,7 +342,7 @@ contains
 
 !   factorize the matrix. The factors are stored in *factors* handle.
     iopt = 1
-    call c_fortran_zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
+    call c_fortran_zgssv( iopt, nvar, nnz, nrhs, axc, ai, ap,&
                           bc, ldb, factors_cmp, ising )
     if(ising .ne. 0) then
       write(*,*) 'INFO from failed factorization = ', ising
@@ -353,7 +350,7 @@ contains
     end subroutine superlu_decomp_cmp
 
     subroutine superlu_solve_cmp(rhs,zrhs)
-    integer :: info, tr, iopt, ldb, nrhs
+    integer :: info, iopt, ldb, nrhs
     integer :: i
     double precision :: rhs(nvar),zrhs(nvar)
 !   solve the system using the existing factors.
@@ -361,10 +358,9 @@ contains
       bc(i) = dcmplx(rhs(i),zrhs(i))
     end do
     iopt = 2
-    tr = 0
     ldb = nvar
     nrhs = 1
-    call c_fortran_zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
+    call c_fortran_zgssv( iopt, nvar, nnz, nrhs, axc, ai, ap,&
                           bc, ldb, factors_cmp, info )
     do i = 1,nvar
       rhs(i) = dble(bc(i))
@@ -390,16 +386,15 @@ contains
 
     subroutine superlu_free
     integer :: state
-    integer :: info, tr, iopt, ldb, nrhs
+    integer :: info, iopt, ldb, nrhs
 
-    tr = 0
     iopt = 3
     ldb = nvar
     nrhs = 1
-    call c_fortran_dgssv( tr, iopt, nvar, nnz, nrhs, ax, ai, ap,&
+    call c_fortran_dgssv( iopt, nvar, nnz, nrhs, ax, ai, ap,&
                        b, ldb, factors, info )
     iopt = 3
-    call c_fortran_zgssv( tr, iopt, nvar, nnz, nrhs, axc, ai, ap,&
+    call c_fortran_zgssv( iopt, nvar, nnz, nrhs, axc, ai, ap,&
                        bc, ldb, factors_cmp, info )
     deallocate(ax,b,axc,bc,ai,ap,fjac,STAT=state)
     if(state .ne. 0) stop 'Deallocation error in superlu_free'
